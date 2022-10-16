@@ -42,7 +42,6 @@ public class User {
     @Transient
     @NonNull String passwordConfirm;
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -66,6 +66,10 @@ public class UserController {
         return "redirect:mainPage/index";
     }
 
+    @GetMapping({"/mainPage/index"})
+    public String mainPage(Model model) {
+        return "mainPage/index";
+    }
 
 //    @GetMapping("/newWorkPage/index")
 //    public String newWorkPage(Model model){
