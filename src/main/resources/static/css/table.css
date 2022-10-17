@@ -1,0 +1,11 @@
+.table, th, td{
+    border: 1px solid #333333;
+    color: #333333;
+    font-size: 20px;
+    /*background-color: black;*/
+}
+
+th, td{
+    padding: 10px;
+}
+

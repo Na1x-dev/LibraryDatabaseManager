@@ -1,5 +1,6 @@
 package com.example.demo.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -11,6 +12,7 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @Table(name = "sales")
+@JsonIgnoreProperties("hibernateLazyInitializer")
 public class Sale {
     @Id
     @Column(name = "sale_id")
@@ -21,6 +23,8 @@ public class Sale {
     @NonNull
     Date saleDate;
 
+    @ManyToOne
+    @JoinColumn(name = "book_id", nullable = false, referencedColumnName = "book_id")
     @NonNull
     Book book;
 
@@ -32,6 +36,8 @@ public class Sale {
     @NonNull
     Long amount;
 
+    @ManyToOne
+    @JoinColumn(name = "client_id", nullable = false, referencedColumnName = "client_id")
     @NonNull
     Client client;
 

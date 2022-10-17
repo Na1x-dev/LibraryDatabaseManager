@@ -1,0 +1,33 @@
+
+<div class="main-table" th:fragment="list">
+    <table class="table">
+        <thead>
+        <tr>
+            <th style="width: 10%">#</th>
+            <th style="width: 35%">Название книги</th>
+            <th style="width: 35%">Автор</th>
+            <th style="width: 20%">Количество</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="book : ${books}" class="table-row">
+            <td style="text-align: center">
+                <div class="book-id" th:text="${book.bookId}">
+                </div>
+            </td>
+            <td style="text-align: center">
+                <div class="book-name" th:text="${book.title}">
+                </div>
+            </td>
+            <td style="text-align: center" >
+                <div class="book-author" th:text="${book.author.authorName}">
+                </div>
+            </td>
+            <td style="text-align: center">
+                <div class="book-amount" th:text="${book.getBooksAmount()}">
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

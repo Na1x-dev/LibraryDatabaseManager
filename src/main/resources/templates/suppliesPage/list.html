@@ -1,0 +1,28 @@
+
+<div class="main-table" th:fragment="list">
+    <table class="table">
+        <thead>
+        <tr>
+            <th style="width: 10%">#</th>
+            <th style="width: 45%">Дата поставки</th>
+            <th style="width: 45%">Поставщик</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="supply : ${supplies}" class="table-row">
+            <td style="text-align: center">
+                <div class="supply-id" th:text="${supply.supplyId}">
+                </div>
+            </td>
+            <td style="text-align: center">
+                <div class="supply-date" th:text="${supply.supplyDate}">
+                </div>
+            </td>
+            <td style="text-align: center" th:text="${supply.supplier.supplierName}">
+                <div class="suppler-name">
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

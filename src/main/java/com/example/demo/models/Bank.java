@@ -1,5 +1,6 @@
 package com.example.demo.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -10,6 +11,7 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @Table(name = "banks")
+@JsonIgnoreProperties("hibernateLazyInitializer")
 public class Bank {
     @Id
     @Column(name = "bank_id")
@@ -28,6 +30,10 @@ public class Bank {
     @NonNull
     String phoneNumber;
 
+    @ManyToOne
+    @JoinColumn(name = "account_id", nullable = false, referencedColumnName = "account_id")
+    @NonNull
+    Account account;
 
 
 }

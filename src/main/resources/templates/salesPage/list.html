@@ -1,0 +1,43 @@
+
+<div class="main-table" th:fragment="list">
+    <table class="table">
+        <thead>
+        <tr>
+            <th style="width: 5%">#</th>
+            <th style="width: 10%">Дата</th>
+            <th style="width: 30%">Книга</th>
+            <th style="width: 15%">Цена</th>
+            <th style="width: 20%">Количество</th>
+            <th style="width: 20%">Покупатель</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="sale : ${sales}" class="table-row">
+            <td style="text-align: center">
+                <div class="sale-id" th:text="${sale.saleId}">
+                </div>
+            </td>
+            <td style="text-align: center">
+                <div class="sale-date" th:text="${sale.saleDate}">
+                </div>
+            </td>
+            <td style="text-align: center">
+                <div class="sale-book" th:text="${sale.book.title}">
+                </div>
+            </td>
+            <td style="text-align: center">
+                <div class="sale-price" th:text="${sale.price}">
+                </div>
+            </td>
+            <td style="text-align: center">
+                <div class="sale-amount" th:text="${sale.amount}">
+                </div>
+            </td>
+            <td style="text-align: center">
+                <div class="sale-client" th:text="${sale.client.name}">
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,43 @@
+
+<div class="main-table" th:fragment="list">
+    <table class="table">
+        <thead>
+        <tr>
+            <th style="width: 5%">#</th>
+            <th style="width: 20%">Фамилия И.О.</th>
+            <th style="width: 20%">Электронная почта</th>
+            <th style="width: 20%">Номер телефона</th>
+            <th style="width: 20%">Адрес</th>
+            <th style="width: 15%">Город</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="client : ${clients}" class="table-row">
+            <td style="text-align: center">
+                <div class="client-id" th:text="${client.clientId}">
+                </div>
+            </td>
+            <td style="text-align: center">
+                <div class="client-name" th:text="${client.clientName}">
+                </div>
+            </td>
+            <td style="text-align: center" >
+                <div class="client-email" th:text="${client.email}">
+                </div>
+            </td>
+            <td style="text-align: center">
+                <div class="client-phone" th:text="${clent.phone}">
+                </div>
+            </td>
+            <td style="text-align: center">
+                <div class="client-address" th:text="${clent.clientAddress}">
+                </div>
+            </td>
+            <td style="text-align: center">
+                <div class="client-city" th:text="${clent.city.title}">
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
