@@ -9,6 +9,7 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @NoArgsConstructor
@@ -40,19 +41,22 @@ public class Book {
     @NonNull
     Genre genre;
 
-    @NonNull
-    @Column(name = "isbn")
-    String isbn;
-
     @JsonIgnore
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
     @ToString.Exclude
     List<Sale> sales;
-
     @JsonIgnore
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
     @ToString.Exclude
     List<SupplyDetail> supplyDetails;
+
+    @ManyToMany(mappedBy = "books")
+    @NonNull Set<Language> languages;
+
+    @NonNull
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="isbn_id", referencedColumnName = "isbn_id")
+    Isbn isbn;
 
     public Integer getBooksAmount() {
         Integer amount = 0;

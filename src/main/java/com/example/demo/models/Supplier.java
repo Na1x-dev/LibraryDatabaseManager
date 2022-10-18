@@ -30,8 +30,4 @@ public class Supplier {
     @ToString.Exclude
     List<Supply> supplies;
 
-//    @ManyToOne
-//    @JoinColumn(name = "account_id", nullable = false, referencedColumnName = "account_id")
-//    @NonNull
-//    Account account;
 }
