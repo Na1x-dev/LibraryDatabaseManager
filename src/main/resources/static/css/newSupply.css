@@ -1,0 +1,47 @@
+.supply-container {
+    margin-left: auto;
+    margin-right: auto;
+    width: 80vw;
+}
+
+.book-input-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.book-input {
+    flex-grow: 3;
+    border: 0;
+    border-left: 1px solid #333333;
+    border-top: 1px solid #333333;
+    border-bottom: 1px solid #333333;
+}
+
+.supply-input {
+    font-size: 15px;
+    padding: 10px;
+    color: #333333;
+    /*border: 0;*/
+    margin-top: 20px;
+    /*margin-bottom: 20px;*/
+}
+
+.some-text {
+    color: #333333;
+    font-size: 25px;
+    margin-top: 20px;
+}
+
+.supply-detail-input {
+    width: 20vw;
+    border: 1px solid #333333;
+    /*border: 0;*/
+    /*border-right: 1px solid #333333;*/
+    /*border-top: 1px solid #333333;*/
+    /*border-bottom: 1px solid #333333;*/
+}
+
+#amount-input {
+    border: 1px solid #333333;
+    width: 70px;
+}

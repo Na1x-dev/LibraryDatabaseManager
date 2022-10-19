@@ -51,4 +51,10 @@ public class MainController {
         model.addAttribute("books", bookService.readAll());
         return "sqlPage/index";
     }
+
+    @GetMapping({"/newSupplyPage/index"})
+    public String newSupply(Model model) {
+//        model.addAttribute("books", bookService.readAll());
+        return "newSupplyPage/index";
+    }
 }

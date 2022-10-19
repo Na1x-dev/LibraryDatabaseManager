@@ -16,6 +16,12 @@ create table if not exists authors
     author_name varchar(250) not null
 );
 
+create table if not exists languages
+(
+    language_id bigserial primary key,
+    language_name varchar(250) not null
+    );
+
 create table if not exists books
 (
     book_id bigserial primary key,
@@ -23,7 +29,8 @@ create table if not exists books
     author_id bigint references authors(author_id),
     publisher_id bigint references publishers(publisher_id),
     genre_id bigint references genres(genre_id),
-    isbn_id bigint
+    isbn_id bigint,
+    language_id bigint references languages(language_id)
 );
 
 create table if not exists isbn_table
@@ -37,19 +44,6 @@ alter table isbn_table drop constraint if exists book_id;
 alter table books drop constraint if exists isbn_id;
 alter table if exists books add constraint isbn_id foreign key (isbn_id) references isbn_table(isbn_id);
 alter table if exists isbn_table add constraint book_id foreign key (book_id) references books(book_id);
-
-create table if not exists languages
-(
-    language_id bigserial primary key,
-    language_name varchar(250) not null
-);
-
-create table if not exists books_languages
-(
-    books_id int8 not null references books,
-    languages_id int8 not null references languages,
-    primary key (books_id, languages_id)
-);
 
 create table if not exists cities
 (

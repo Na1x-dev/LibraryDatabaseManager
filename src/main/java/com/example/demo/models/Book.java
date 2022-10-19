@@ -50,8 +50,10 @@ public class Book {
     @ToString.Exclude
     List<SupplyDetail> supplyDetails;
 
-    @ManyToMany(mappedBy = "books")
-    @NonNull Set<Language> languages;
+    @ManyToOne
+    @JoinColumn(name = "language_id", nullable = false, referencedColumnName = "language_id")
+    @NonNull
+    Language language;
 
     @NonNull
     @OneToOne(cascade = CascadeType.ALL)
