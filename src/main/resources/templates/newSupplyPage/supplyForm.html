@@ -6,37 +6,42 @@
 </head>
 <body>
 
-<div th:fragment="supply-form" class="supply-container">
+<form th:fragment="supply-form" class="supply-container" th:action="@{/newSupplyPage/index}" method="post">
     <div class="some-text">
         Поступление
     </div>
     <div>
         <input type="text" class="supply-input supply-detail-input" placeholder="Поставщик"
-               autofocus="true" required="required"/>
+               autofocus="true" required="required" th:field="${newSupply.supplier.supplierName}"/>
     </div>
     <div>
         <input type="date" id="date-picker" class="supply-input supply-detail-input" placeholder="Дата поступления"
-               autofocus="true" required="required"/>
+               autofocus="true" required="required" th:field="${newSupply.supplyDate}"/>
+
     </div>
     <div class="some-text">
         Книги
     </div>
     <div class="book-input-container">
         <input type="text" class="supply-input book-input" placeholder="Название книги"
-               autofocus="true" required="required"/>
+               autofocus="true" required="required" th:field="${newSupply.supplyDetails[0].book.title}"/>
         <input type="text" class="supply-input book-input" placeholder="Автор"
-               autofocus="true" required="required"/>
+               autofocus="true" required="required" th:field="${newSupply.supplyDetails[0].book.author.authorName}"/>
         <input type="text" class="supply-input book-input" placeholder="Издание"
-               autofocus="true" required="required"/>
+               autofocus="true" required="required" th:field="${newSupply.supplyDetails[0].book.publisher.publisherTitle}"/>
         <input type="text" class="supply-input book-input" placeholder="Жанр"
-               autofocus="true" required="required"/>
+               autofocus="true" required="required" th:field="${newSupply.supplyDetails[0].book.genre.genreName}"/>
         <input type="text" class="supply-input book-input" placeholder="Язык"
-               autofocus="true" required="required"/>
-        <input type="number" id="amount-input" value="1" class="supply-input" placeholder="Количество"
-               autofocus="true" required="required"/>
+               autofocus="true" required="required" th:field="${newSupply.supplyDetails[0].book.language.languageName}"/>
+        <input type="number" id="amount-input" class="supply-input" placeholder="Количество"
+               autofocus="true" required="required" th:field="${newSupply.supplyDetails[0].amount}"/>
     </div>
 
-</div>
+    <div class="bottom-supply-buttons">
+        <button class="add-book-button new-supply-button">Добавить книгу</button>
+        <button type="submit" class="save-supply-button new-supply-button">Сохранить</button>
+    </div>
+</form>
 
 
 </body>

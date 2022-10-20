@@ -9,12 +9,11 @@ import javax.persistence.*;
 
 @Entity
 @Data
-@NoArgsConstructor
 @Table(name = "supply_details")
 @JsonIgnoreProperties("hibernateLazyInitializer")
 public class SupplyDetail {
     @Id
-    @Column(name="supply_detail_id")
+    @Column(name = "supply_detail_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long supplyDetailId;
 
@@ -26,7 +25,12 @@ public class SupplyDetail {
     @JoinColumn(name = "book_id", nullable = false, referencedColumnName = "book_id")
     @NonNull
     Book book;
-
     @NonNull
     Integer amount;
+
+    public SupplyDetail() {
+//        supply = new Supply();
+        book = new Book();
+        amount = 1;
+    }
 }

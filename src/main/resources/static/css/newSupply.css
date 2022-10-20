@@ -45,3 +45,23 @@
     border: 1px solid #333333;
     width: 70px;
 }
+
+.new-supply-button{
+    margin-top: 20px;
+    width: 20vw;
+    padding: 10px;
+    border: 1px solid #333333;
+    font-size: 15px;
+    color: #333333;
+}
+
+.bottom-supply-buttons{
+    margin-top: 20px    ;
+    display: flex;
+    flex-direction: column;
+}
+
+.new-supply-button:hover{
+    background-color: #eeeeee;
+    cursor: pointer;
+}

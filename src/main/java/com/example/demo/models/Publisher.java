@@ -8,11 +8,11 @@ import lombok.NonNull;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Data
-@NoArgsConstructor
 @Table(name = "publishers")
 @JsonIgnoreProperties("hibernateLazyInitializer")
 public class Publisher {
@@ -31,4 +31,8 @@ public class Publisher {
     List<Book> books;
 
 
+    public Publisher() {
+        publisherTitle = "";
+        books = new ArrayList<>();
+    }
 }

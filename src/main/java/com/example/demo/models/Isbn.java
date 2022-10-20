@@ -8,7 +8,6 @@ import lombok.NonNull;
 import javax.persistence.*;
 
 @Entity
-@NoArgsConstructor
 @Data
 @Table(name = "isbn_table")
 @JsonIgnoreProperties("hibernateLazyInitializer")
@@ -26,5 +25,11 @@ public class Isbn {
     @NonNull
 
     Book book;
+
+    public Isbn(){
+        isbnNumber = "kjaskjdhjkasd";
+//        book = new Book();
+    }
+
 
 }

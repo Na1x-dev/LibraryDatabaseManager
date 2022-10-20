@@ -8,11 +8,11 @@ import lombok.NonNull;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
 @Entity
-@NoArgsConstructor
 @Data
 @Table(name = "languages")
 @JsonIgnoreProperties("hibernateLazyInitializer")
@@ -31,4 +31,8 @@ public class Language {
     @ToString.Exclude
     List<Book> books;
 
+    public Language() {
+        languageName = "";
+        books = new ArrayList<>();
+    }
 }

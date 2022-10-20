@@ -8,11 +8,11 @@ import lombok.ToString;
 import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Data
-@NoArgsConstructor
 @Table(name = "suppliers")
 @JsonIgnoreProperties("hibernateLazyInitializer")
 public class Supplier {
@@ -30,4 +30,8 @@ public class Supplier {
     @ToString.Exclude
     List<Supply> supplies;
 
+    public Supplier() {
+        supplierName = "";
+        supplies = new ArrayList<>();
+    }
 }

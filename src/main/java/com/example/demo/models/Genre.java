@@ -8,11 +8,11 @@ import lombok.NonNull;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Data
-@NoArgsConstructor
 @Table(name = "genres")
 @JsonIgnoreProperties("hibernateLazyInitializer")
 public class Genre {
@@ -21,7 +21,7 @@ public class Genre {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long genreId;
 
-    @Column(name="genre_name")
+    @Column(name = "genre_name")
     @NonNull
     String genreName;
 
@@ -30,4 +30,8 @@ public class Genre {
     @ToString.Exclude
     List<Book> books;
 
+    public Genre() {
+        genreName = "";
+        books = new ArrayList<>();
+    }
 }

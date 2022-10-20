@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@NoArgsConstructor
 @Data
 @Table(name = "books")
 @JsonIgnoreProperties("hibernateLazyInitializer")
@@ -59,6 +58,16 @@ public class Book {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="isbn_id", referencedColumnName = "isbn_id")
     Isbn isbn;
+
+    public Book(){
+        title = "";
+        author = new Author();
+        publisher = new Publisher();
+        genre = new Genre();
+        language = new Language();
+        isbn = new Isbn();
+
+    }
 
     public Integer getBooksAmount() {
         Integer amount = 0;

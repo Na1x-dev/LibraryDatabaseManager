@@ -8,11 +8,11 @@ import lombok.NonNull;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
-@Entity
 @Data
-@NoArgsConstructor
+@Entity
 @Table(name = "authors")
 @JsonIgnoreProperties("hibernateLazyInitializer")
 public class Author {
@@ -29,4 +29,9 @@ public class Author {
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
     @ToString.Exclude
     List<Book> books;
+
+    public Author(){
+        authorName = "";
+        books = new ArrayList<>();
+    }
 }

@@ -1,5 +1,6 @@
 package com.example.demo.controllers.main;
 
+import com.example.demo.models.*;
 import com.example.demo.services.book.BookService;
 import com.example.demo.services.client.ClientService;
 import com.example.demo.services.sale.SaleService;
@@ -9,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class MainController {
@@ -54,7 +57,20 @@ public class MainController {
 
     @GetMapping({"/newSupplyPage/index"})
     public String newSupply(Model model) {
-//        model.addAttribute("books", bookService.readAll());
+        Supply newSupply = new Supply();
+        model.addAttribute("newSupply", newSupply);
         return "newSupplyPage/index";
+    }
+
+    @PostMapping({"/newSupplyPage/index"})
+    public String newSupply(Model model, @ModelAttribute("newSupply") Supply newSupply) {
+
+        System.out.println(newSupply);
+        System.out.println(newSupply.getSupplier().getSupplierName());
+        System.out.println(newSupply.getSupplyDate());
+        System.out.println(newSupply.getSupplyDetails().get(0).getBook().getAuthor().getAuthorName());
+        System.out.println(newSupply.getSupplyDetails().get(0).getAmount());
+        System.out.println(newSupply.getSupplyDetails().get(0).getBook().getTitle());
+        return "mainPage/index";
     }
 }
