@@ -6,7 +6,7 @@ import com.example.demo.models.Supply;
 import java.util.List;
 
 public interface SupplyService {
-    void create(Supply supply);
+    Supply create(Supply supply);
 
     List<Supply> readAll();
 

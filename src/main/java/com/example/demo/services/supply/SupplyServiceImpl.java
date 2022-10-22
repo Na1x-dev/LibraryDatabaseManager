@@ -16,8 +16,8 @@ public class SupplyServiceImpl implements SupplyService {
     SupplyJpaRepository supplyRepository;
 
     @Override
-    public void create(Supply supply) {
-        supplyRepository.save(supply);
+    public Supply create(Supply supply) {
+        return supplyRepository.save(supply);
     }
 
     @Override

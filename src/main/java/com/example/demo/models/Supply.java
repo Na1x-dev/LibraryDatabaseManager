@@ -2,20 +2,20 @@ package com.example.demo.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.ToString;
+import lombok.*;
+import org.hibernate.Hibernate;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
-@Data
+@Getter
+@Setter
+@RequiredArgsConstructor
 @Table(name = "supplies")
 @JsonIgnoreProperties("hibernateLazyInitializer")
 public class Supply {
@@ -34,7 +34,7 @@ public class Supply {
     Supplier supplier;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "supply", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "supply", orphanRemoval = true)
     @ToString.Exclude
     List<SupplyDetail> supplyDetails;
 
@@ -45,4 +45,26 @@ public class Supply {
         supplyDetails.add(new SupplyDetail());
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Supply supply = (Supply) o;
+        return supplyId != null && Objects.equals(supplyId, supply.supplyId);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "Supply{" +
+                "supplyId=" + supplyId +
+                ", supplyDate=" + supplyDate +
+                ", supplier=" + supplier.getSupplierId() +
+                ", supplyDetails=" + supplyDetails +
+                '}';
+    }
 }

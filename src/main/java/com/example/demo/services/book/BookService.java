@@ -4,8 +4,10 @@ import com.example.demo.models.Book;
 import java.util.List;
 
 public interface BookService {
-    void create(Book book);
+    Book create(Book book);
 
     List<Book> readAll();
+
+
 
 }

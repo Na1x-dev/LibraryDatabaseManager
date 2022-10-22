@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PublisherJpaRepository extends JpaRepository<Publisher, Long> {
+    Publisher findByPublisherTitle(String publisherTitle);
+
 }

@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface IsbnJpaRepository extends JpaRepository<Isbn, Long> {
+    Isbn findByIsbnNumber(String isbnNumber);
 }
