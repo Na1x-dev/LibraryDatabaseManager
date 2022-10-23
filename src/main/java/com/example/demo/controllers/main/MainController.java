@@ -114,14 +114,13 @@ public class MainController {
             return someGenre;
     }
 
-    public Isbn saveIsbn(Isbn isbn) {
-        //Isbn someIsbn = isbnService.readByIsbnNumber(isbn.getIsbnNumber());
-       // if (someIsbn == null)
-            return isbnService.create(isbn);
-//        else
-//            return someIsbn;
-        //в бд у всех isbn book_id == null
-        //допилить цену в supplyDetails
+    public Isbn saveIsbn(Book book) {
+        book.getIsbn().generateIsbnNumber(book);
+        Isbn someIsbn = isbnService.readByIsbnNumber(book.getIsbn().getIsbnNumber());
+        if (someIsbn == null)
+            return isbnService.create(book.getIsbn());
+        else
+            return someIsbn;
     }
 
     public Language saveLanguage(Language language) {
@@ -135,10 +134,14 @@ public class MainController {
     public Book saveBook(Book book) {
         book.setAuthor(saveAuthor(book.getAuthor()));
         book.setGenre(saveGenre(book.getGenre()));
-        book.setIsbn(saveIsbn(book.getIsbn()));
+        book.setIsbn(saveIsbn(book));
         book.setLanguage(saveLanguage(book.getLanguage()));
         book.setPublisher(savePublisher(book.getPublisher()));
-        return bookService.create(book);
+        Book someBook = bookService.readByBookTitle(book.getTitle());
+        if (someBook == null || !someBook.equals(book))
+            return bookService.create(book);
+        else
+            return someBook;
     }
 
     public void saveSupplyDetail(Supply supply) {
@@ -148,7 +151,6 @@ public class MainController {
             supplyDetails.get(i).setBook(saveBook(supplyDetails.get(i).getBook()));
             supplyDetails.set(i, supplyDetailService.create(supplyDetails.get(i)));
         }
-
     }
 
     public Supplier saveSupplier(Supplier supplier) {

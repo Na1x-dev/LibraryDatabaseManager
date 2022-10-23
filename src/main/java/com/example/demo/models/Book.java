@@ -54,12 +54,13 @@ public class Book {
     @NonNull
     Language language;
 
+
     @NonNull
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="isbn_id", referencedColumnName = "isbn_id")
+    @JoinColumn(name = "isbn_id", referencedColumnName = "isbn_id")
     Isbn isbn;
 
-    public Book(){
+    public Book() {
         title = "";
         author = new Author();
         publisher = new Publisher();
@@ -84,7 +85,11 @@ public class Book {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
         Book book = (Book) o;
-        return bookId != null && Objects.equals(bookId, book.bookId);
+        return bookId != null &&
+                Objects.equals(publisher.getPublisherId(), book.publisher.getPublisherId()) &&
+                Objects.equals(genre.getGenreId(), book.getGenre().getGenreId()) &&
+                Objects.equals(isbn.isbnNumber, book.isbn.isbnNumber) &&
+                Objects.equals(language.getLanguageId(), book.language.getLanguageId());
     }
 
     @Override

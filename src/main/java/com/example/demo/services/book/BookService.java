@@ -9,5 +9,5 @@ public interface BookService {
     List<Book> readAll();
 
 
-
+    Book readByBookTitle(String title);
 }

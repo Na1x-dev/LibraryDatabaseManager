@@ -33,6 +33,8 @@
                autofocus="true" required="required" th:field="${newSupply.supplyDetails[0].book.genre.genreName}"/>
         <input type="text" class="supply-input book-input" placeholder="Язык"
                autofocus="true" required="required" th:field="${newSupply.supplyDetails[0].book.language.languageName}"/>
+        <input type="number" step="0.01" class="supply-input book-input" placeholder="Цена одной книги"
+               autofocus="true" required="required" th:field="${newSupply.supplyDetails[0].price}"/>
         <input type="number" id="amount-input" class="supply-input" placeholder="Количество"
                autofocus="true" required="required" th:field="${newSupply.supplyDetails[0].amount}"/>
     </div>

@@ -20,7 +20,7 @@ create table if not exists languages
 (
     language_id bigserial primary key,
     language_name varchar(250) not null
-    );
+);
 
 create table if not exists books
 (
@@ -36,8 +36,8 @@ create table if not exists books
 create table if not exists isbn_table
 (
     isbn_id bigserial primary key,
-    isbn_number varchar(250) not null,
-    book_id bigint
+    isbn_number varchar(250) not null
+--     book_id bigint
 );
 
 alter table isbn_table drop constraint if exists book_id;

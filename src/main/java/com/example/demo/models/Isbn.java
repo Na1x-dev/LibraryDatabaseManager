@@ -17,19 +17,32 @@ public class Isbn {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long isbnId;
 
-    @Column(name="isbn_number")
+    @Column(name = "isbn_number")
     @NonNull
     String isbnNumber;
 
     @OneToOne(mappedBy = "isbn")
     @NonNull
-
     Book book;
 
-    public Isbn(){
-        isbnNumber = "kjaskjdhjkasd";
+    public Isbn() {
+        isbnNumber = "";
 //        book = new Book();
     }
 
+    public void generateIsbnNumber(Book book) {
+        isbnNumber = "978-3-" + stringToAscii(book.title, 5) + "-" + stringToAscii(book.author.getAuthorName(), 3);
+    }
+    private String stringToAscii(String str, int n) {
+        char[] strCharArray = str.toCharArray();
+        StringBuilder strBuilder = new StringBuilder();
+        if (strCharArray.length < n) {
+            n = strCharArray.length;
+        }
+        for (int i = 0; i < n; i++) {
+            strBuilder.append((int)strCharArray[i]);
+        }
 
+        return strBuilder.toString();
+    }
 }

@@ -30,6 +30,9 @@ public class SupplyDetail {
     @NonNull
     Integer amount;
 
+    @NonNull
+    Double price;
+
     public SupplyDetail() {
 //        supply = new Supply();
         book = new Book();
