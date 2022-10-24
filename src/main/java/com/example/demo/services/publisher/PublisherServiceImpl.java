@@ -17,7 +17,7 @@ public class PublisherServiceImpl implements PublisherService {
 
     @Override
     public Publisher create(Publisher publisher) {
-        publisher.setPublisherTitle(publisher.getPublisherTitle().toLowerCase());
+        publisher.setPublisherTitle(publisher.getPublisherTitle().toLowerCase().trim());
         return publisherJpaRepository.save(publisher);
     }
 
@@ -28,6 +28,6 @@ public class PublisherServiceImpl implements PublisherService {
 
     @Override
     public Publisher readByPublisherTitle(String publisherTitle) {
-        return publisherJpaRepository.findByPublisherTitle(publisherTitle.toLowerCase());
+        return publisherJpaRepository.findByPublisherTitle(publisherTitle.toLowerCase().trim());
     }
 }

@@ -4,8 +4,9 @@
         <thead>
         <tr>
             <th style="width: 10%">#</th>
-            <th style="width: 45%">Дата поставки</th>
-            <th style="width: 45%">Поставщик</th>
+            <th style="width: 30%">Книги</th>
+            <th style="width: 30%">Дата поставки</th>
+            <th style="width: 30%">Поставщик</th>
         </tr>
         </thead>
         <tbody>
@@ -14,14 +15,19 @@
                 <div class="supply-id" th:text="${supply.supplyId}">
                 </div>
             </td>
+            <td style="text-align: center" th:text="${supply.getSupplyBooks()}">
+                <div class="supply-books">
+                </div>
+            </td>
             <td style="text-align: center">
-                <div class="supply-date" th:text="${supply.supplyDate}">
+                <div class="supply-date" th:text="${supply.getDateInNormalFormat()}">
                 </div>
             </td>
             <td style="text-align: center" th:text="${supply.supplier.supplierName}">
-                <div class="suppler-name">
+                <div class="supplier-name">
                 </div>
             </td>
+
         </tr>
         </tbody>
     </table>

@@ -17,7 +17,7 @@ public class IsbnServiceImpl implements IsbnService {
 
     @Override
     public Isbn create(Isbn isbn) {
-        isbn.setIsbnNumber(isbn.getIsbnNumber().toLowerCase());
+        isbn.setIsbnNumber(isbn.getIsbnNumber().toLowerCase().trim());
         return isbnRepository.save(isbn);
     }
 
@@ -28,6 +28,6 @@ public class IsbnServiceImpl implements IsbnService {
 
     @Override
     public Isbn readByIsbnNumber(String isbnNumber) {
-        return isbnRepository.findByIsbnNumber(isbnNumber.toLowerCase());
+        return isbnRepository.findByIsbnNumber(isbnNumber.toLowerCase().trim());
     }
 }

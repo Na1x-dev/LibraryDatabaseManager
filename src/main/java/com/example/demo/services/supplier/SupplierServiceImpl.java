@@ -17,11 +17,17 @@ public class SupplierServiceImpl implements SupplierService {
 
     @Override
     public Supplier create(Supplier supplier) {
+        supplier.setSupplierName(supplier.getSupplierName().toLowerCase().trim());
         return supplierJpaRepository.save(supplier);
     }
 
     @Override
     public List<Supplier> readAll() {
         return supplierJpaRepository.findAll();
+    }
+
+    @Override
+    public Supplier readBySupplierName(String supplierName) {
+        return supplierJpaRepository.findBySupplierName(supplierName.toLowerCase().trim());
     }
 }

@@ -28,11 +28,13 @@
         <input type="text" class="supply-input book-input" placeholder="Автор"
                autofocus="true" required="required" th:field="${newSupply.supplyDetails[0].book.author.authorName}"/>
         <input type="text" class="supply-input book-input" placeholder="Издательство"
-               autofocus="true" required="required" th:field="${newSupply.supplyDetails[0].book.publisher.publisherTitle}"/>
+               autofocus="true" required="required"
+               th:field="${newSupply.supplyDetails[0].book.publisher.publisherTitle}"/>
         <input type="text" class="supply-input book-input" placeholder="Жанр"
                autofocus="true" required="required" th:field="${newSupply.supplyDetails[0].book.genre.genreName}"/>
         <input type="text" class="supply-input book-input" placeholder="Язык"
-               autofocus="true" required="required" th:field="${newSupply.supplyDetails[0].book.language.languageName}"/>
+               autofocus="true" required="required"
+               th:field="${newSupply.supplyDetails[0].book.language.languageName}"/>
         <input type="number" step="0.01" class="supply-input book-input" placeholder="Цена одной книги"
                autofocus="true" required="required" th:field="${newSupply.supplyDetails[0].price}"/>
         <input type="number" id="amount-input" class="supply-input" placeholder="Количество"
@@ -40,7 +42,10 @@
     </div>
 
     <div class="bottom-supply-buttons">
-        <button class="add-book-button new-supply-button">Добавить книгу</button>
+        <div class="add-delete-book-buttons">
+            <button class="add-book-button new-supply-button">Добавить книгу</button>
+            <button class="delete-book-button new-supply-button">Убрать книгу</button>
+        </div>
         <button type="submit" class="save-supply-button new-supply-button">Сохранить</button>
     </div>
 </form>

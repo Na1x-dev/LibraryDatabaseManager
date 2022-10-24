@@ -12,7 +12,6 @@ import java.util.List;
 
 @Entity
 @Data
-@NoArgsConstructor
 @Table(name = "cities")
 @JsonIgnoreProperties("hibernateLazyInitializer")
 public class City {
@@ -29,4 +28,8 @@ public class City {
     @OneToMany(mappedBy = "city", cascade = CascadeType.ALL, orphanRemoval = true)
     @ToString.Exclude
     List<Client> clients;
+
+    public City() {
+        title="";
+    }
 }

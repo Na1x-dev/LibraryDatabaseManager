@@ -17,7 +17,7 @@ public class AuthorServiceImpl implements AuthorService {
 
     @Override
     public Author create(Author author) {
-        author.setAuthorName(author.getAuthorName().toLowerCase());
+        author.setAuthorName(author.getAuthorName().toLowerCase().trim());
         return authorRepository.save(author);
     }
 
@@ -28,6 +28,6 @@ public class AuthorServiceImpl implements AuthorService {
 
     @Override
     public Author readByAuthorName(String authorName) {
-        return authorRepository.findByAuthorName(authorName.toLowerCase());
+        return authorRepository.findByAuthorName(authorName.toLowerCase().trim());
     }
 }

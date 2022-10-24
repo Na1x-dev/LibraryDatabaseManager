@@ -1,12 +1,16 @@
 <div class="main-table" th:fragment="list">
-    <a class="to-new-supply-button" href="../newSupplyPage/index.html" th:href="@{../../newSupplyPage/index}">Новое поступление</a>
+    <a class="to-new-supply-button to-something-new-button" href="../newSupplyPage/index.html" th:href="@{../../newSupplyPage/index}">Новое поступление</a>
     <table class="table">
         <thead>
         <tr>
-            <th style="width: 10%">#</th>
-            <th style="width: 35%">Название книги</th>
-            <th style="width: 35%">Автор</th>
-            <th style="width: 20%">Количество</th>
+            <th style="width: 5%">#</th>
+            <th style="width: 20%">Название книги</th>
+            <th style="width: 20%">Автор</th>
+            <th style="width: 20%">Издательство</th>
+            <th style="width: 20%">Жанр</th>
+            <th style="width: 20%">Язык</th>
+            <th style="width: 10%">Цена</th>
+            <th style="width: 5%">Кол-во</th>
         </tr>
         </thead>
         <tbody>
@@ -21,6 +25,22 @@
             </td>
             <td style="text-align: center">
                 <div class="book-author" th:text="${book.author.authorName}">
+                </div>
+            </td>
+            <td style="text-align: center">
+                <div class="book-publisher" th:text="${book.publisher.publisherTitle}">
+                </div>
+            </td>
+            <td style="text-align: center">
+                <div class="book-genre" th:text="${book.genre.genreName}">
+                </div>
+            </td>
+            <td style="text-align: center">
+                <div class="book-language" th:text="${book.language.languageName}">
+                </div>
+            </td>
+            <td style="text-align: center">
+                <div class="book-price" th:text="${book.getBookPrice()}">
                 </div>
             </td>
             <td style="text-align: center">

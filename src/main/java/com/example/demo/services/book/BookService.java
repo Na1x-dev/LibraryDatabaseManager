@@ -10,4 +10,6 @@ public interface BookService {
 
 
     Book readByBookTitle(String title);
+
+    Book readByBookTitleAndAuthorAndPublisherAndLanguage(String title, String authorName, String publisherTitle, String languageName);
 }

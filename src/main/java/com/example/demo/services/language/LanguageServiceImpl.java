@@ -17,7 +17,7 @@ public class LanguageServiceImpl implements LanguageService {
 
     @Override
     public Language create(Language language) {
-        language.setLanguageName(language.getLanguageName().toLowerCase());
+        language.setLanguageName(language.getLanguageName().toLowerCase().trim());
         return languageJpaRepository.save(language);
     }
 
@@ -28,6 +28,6 @@ public class LanguageServiceImpl implements LanguageService {
 
     @Override
     public Language readByLanguageName(String languageName) {
-        return languageJpaRepository.findByLanguageName(languageName.toLowerCase());
+        return languageJpaRepository.findByLanguageName(languageName.toLowerCase().trim());
     }
 }

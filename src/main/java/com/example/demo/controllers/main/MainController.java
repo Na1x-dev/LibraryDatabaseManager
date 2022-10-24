@@ -29,8 +29,7 @@ public class MainController {
     ClientService clientService;
     @Autowired
     SupplyService supplyService;
-    @Autowired
-    SaleService saleService;
+
     @Autowired
     AuthorService authorService;
     @Autowired
@@ -64,11 +63,7 @@ public class MainController {
         return "suppliesPage/index";
     }
 
-    @GetMapping({"/salesPage/index"})
-    public String salesPage(Model model) {
-        model.addAttribute("sales", saleService.readAll());
-        return "salesPage/index";
-    }
+
 
     @GetMapping({"/sqlPage/index"})
     public String sqlPage(Model model) {
@@ -154,7 +149,11 @@ public class MainController {
     }
 
     public Supplier saveSupplier(Supplier supplier) {
-        return supplierService.create(supplier);
+        Supplier someSupplier = supplierService.readBySupplierName(supplier.getSupplierName());
+        if (someSupplier == null)
+            return supplierService.create(supplier);
+        else
+            return someSupplier;
     }
 
     public void saveSupply(Supply supply) {

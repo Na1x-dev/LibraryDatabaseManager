@@ -1,8 +1,6 @@
 package com.example.demo.services.sale;
 
-import com.example.demo.models.Book;
 import com.example.demo.models.Sale;
-import com.example.demo.repositories.book.BookJpaRepository;
 import com.example.demo.repositories.sale.SaleJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,8 +14,9 @@ public class SaleServiceImpl implements SaleService {
     SaleJpaRepository saleRepository;
 
     @Override
-    public void create(Sale sale) {
+    public Sale create(Sale sale) {
         saleRepository.save(sale);
+        return sale;
     }
 
     @Override

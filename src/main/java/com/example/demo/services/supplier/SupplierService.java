@@ -11,5 +11,5 @@ public interface SupplierService {
     List<Supplier> readAll();
 
 
-
+    Supplier readBySupplierName(String supplierName);
 }

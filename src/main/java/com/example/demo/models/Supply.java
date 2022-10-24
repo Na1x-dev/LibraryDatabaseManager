@@ -7,6 +7,7 @@ import org.hibernate.Hibernate;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -43,6 +44,19 @@ public class Supply {
         supplier = new Supplier();
         supplyDetails = new ArrayList<>();
         supplyDetails.add(new SupplyDetail());
+    }
+
+    public String getDateInNormalFormat() {
+        SimpleDateFormat format = new SimpleDateFormat("dd MMMM yyyy");
+        return format.format(supplyDate);
+    }
+
+    public String getSupplyBooks(){
+        String books = "";
+        for(SupplyDetail supplyDetail : supplyDetails ){
+            books = books + supplyDetail.book.title + "\n";
+        }
+        return books;
     }
 
     @Override

@@ -20,6 +20,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public Book create(Book book) {
+        book.setTitle(book.getTitle().toLowerCase().trim());
         return bookRepository.save(book);
     }
 
@@ -30,6 +31,11 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public Book readByBookTitle(String title) {
-        return bookRepository.findBookByTitle(title);
+        return bookRepository.findBookByTitle(title.toLowerCase().trim());
+    }
+
+    @Override
+    public Book readByBookTitleAndAuthorAndPublisherAndLanguage(String title, String authorName, String publisherTitle, String languageName) {
+        return bookRepository.findBookByTitleAndAuthorAuthorNameAndPublisherPublisherTitleAndLanguageLanguageName(title, authorName, publisherTitle, languageName);
     }
 }

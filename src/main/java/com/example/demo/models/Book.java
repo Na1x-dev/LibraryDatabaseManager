@@ -79,6 +79,9 @@ public class Book {
         return amount;
     }
 
+    public Double getBookPrice() {
+        return supplyDetails.get(supplyDetails.size() - 1).getPrice();
+    }
 
     @Override
     public boolean equals(Object o) {

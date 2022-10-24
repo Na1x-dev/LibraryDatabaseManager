@@ -12,7 +12,6 @@ import java.util.List;
 
 @Entity
 @Data
-@NoArgsConstructor
 @Table(name = "clients")
 @JsonIgnoreProperties("hibernateLazyInitializer")
 public class Client {
@@ -33,7 +32,7 @@ public class Client {
     @NonNull
     String phone;
 
-    @Column(name="client_address")
+    @Column(name = "client_address")
     @NonNull
     String clientAddress;
 
@@ -47,4 +46,10 @@ public class Client {
     @ToString.Exclude
     List<Sale> sales;
 
+    public Client() {
+        city = new City();
+        clientAddress = "";
+        email = "";
+        phone = "";
+    }
 }

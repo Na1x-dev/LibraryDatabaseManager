@@ -23,7 +23,7 @@
 .table {
 }
 
-.to-new-supply-button{
+.to-something-new-button{
     border-left: 1px solid #333333;
     border-right: 1px solid #333333;
     font-size: 20px;
@@ -36,7 +36,7 @@
     text-decoration: none;
 }
 
-.to-new-supply-button:hover{
+.to-something-new-button:hover{
     background-color: #eeeeee;
 
 }

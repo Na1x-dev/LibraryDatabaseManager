@@ -65,3 +65,12 @@
     background-color: #eeeeee;
     cursor: pointer;
 }
+
+.add-delete-book-buttons{
+    display: flex;
+    flex-direction: row;
+}
+
+.add-book-button{
+    margin-right: 20px;
+}

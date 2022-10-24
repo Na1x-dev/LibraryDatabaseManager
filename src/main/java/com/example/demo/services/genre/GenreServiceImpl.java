@@ -17,7 +17,7 @@ public class GenreServiceImpl implements GenreService {
 
     @Override
     public Genre create(Genre genre) {
-        genre.setGenreName(genre.getGenreName().toLowerCase());
+        genre.setGenreName(genre.getGenreName().toLowerCase().trim());
         return genreRepository.save(genre);
     }
 
@@ -28,6 +28,6 @@ public class GenreServiceImpl implements GenreService {
 
     @Override
     public Genre readByGenreName(String genreName) {
-        return genreRepository.findByGenreName(genreName.toLowerCase());
+        return genreRepository.findByGenreName(genreName.toLowerCase().trim());
     }
 }
