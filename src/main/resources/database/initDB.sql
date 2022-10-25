@@ -56,7 +56,7 @@ create table if not exists clients
     client_id bigserial primary key,
     client_name varchar(250) not null,
     email varchar(250) not null,
-    phone varchar(250) not null,
+--     phone varchar(250) not null,
     client_address varchar(250) not null,
     city_id bigint references cities(city_id)
 );

@@ -5,6 +5,7 @@ import com.example.demo.services.book.BookService;
 import com.example.demo.services.city.CityService;
 import com.example.demo.services.client.ClientService;
 import com.example.demo.services.sale.SaleService;
+import com.example.demo.services.supplyDetail.SupplyDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +25,8 @@ public class SaleController {
     ClientService clientService;
     @Autowired
     BookService bookService;
+    @Autowired
+    SupplyDetailService supplyDetailService;
 
     @GetMapping({"/salesPage/index"})
     public String salesPage(Model model) {
@@ -41,8 +44,12 @@ public class SaleController {
     @PostMapping({"/newSalePage/index"})
     public String newSale(Model model, @ModelAttribute("newSale") Sale newSale) {
 //        saveBook(newSupply.getSupplyDetails().get(0).getBook());
-        saveSale(newSale);
-        return "redirect:/salesPage/index";
+        if (sellBooks(newSale, model)) {
+            saveSale(newSale);
+            return "redirect:/salesPage/index";
+        } else {
+            return "/newSalePage/index";
+        }
     }
 
 
@@ -56,21 +63,47 @@ public class SaleController {
 
     public Client saveClient(Client client) {
         client.setCity((saveCity(client.getCity())));
-        Client someClient = clientService.readByClientNameAndAddress(client.getClientName(), client.getClientAddress());
+        Client someClient = clientService.readByClientNameAndAddress(client.getClientName(), client.getClientAddress(), client.getCity().getTitle(), client.getEmail());
         if (someClient == null)
             return clientService.create(client);
-        else
+        else {
+            //clientService.update(client.getClientId(), client);
             return someClient;
+        }
     }
 
     public Book saveBook(Book book) {
-        Book someBook = bookService.readByBookTitleAndAuthorAndPublisherAndLanguage(book.getTitle().toLowerCase().trim(), book.getAuthor().getAuthorName().toLowerCase().trim(), book.getPublisher().getPublisherTitle().toLowerCase().trim(), book.getLanguage().getLanguageName().toLowerCase().trim());
-        return someBook;
+        return bookService.readByBookTitleAndAuthorAndPublisherAndLanguage(book.getTitle().toLowerCase().trim(), book.getAuthor().getAuthorName().toLowerCase().trim(), book.getPublisher().getPublisherTitle().toLowerCase().trim(), book.getLanguage().getLanguageName().toLowerCase().trim());
+    }
+
+    private Boolean sellBooks(Sale sale, Model model) {
+        Book book = bookService.readByBookTitleAndAuthorAndPublisherAndLanguage(sale.getBook().getTitle().toLowerCase().trim(), sale.getBook().getAuthor().getAuthorName().toLowerCase().trim(), sale.getBook().getPublisher().getPublisherTitle().toLowerCase().trim(), sale.getBook().getLanguage().getLanguageName().toLowerCase().trim());
+        if(book==null){
+            model.addAttribute("bookError", "Такой книги нет в магазине");
+            return false;
+        }
+        if (book.getBooksAmount() >= sale.getAmount()) {
+            int j = 0;
+            SupplyDetail supplyDetail = book.getSupplyDetails().get(j);
+            for (int i = 0; i < sale.getAmount(); i++) {
+                supplyDetail.setAmount(supplyDetail.getAmount() - 1);
+                if (supplyDetail.getAmount() < 0) {
+                    j++;
+                    supplyDetailService.update(supplyDetail.getSupplyDetailId(), supplyDetail);
+                    supplyDetail = book.getSupplyDetails().get(j);
+                }
+            }
+            return true;
+        } else {
+            model.addAttribute("bookError", "Такого количества данных книг нет на складе");
+            return false;
+        }
     }
 
     public Sale saveSale(Sale sale) {
         sale.setBook((saveBook(sale.getBook())));
         sale.setClient((saveClient(sale.getClient())));
+        sale.setPrice(sale.getBook().getBookPrice());
         return saleService.create(sale);
     }
 }

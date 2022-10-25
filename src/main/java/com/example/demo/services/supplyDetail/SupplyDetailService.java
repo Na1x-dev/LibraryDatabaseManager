@@ -11,5 +11,7 @@ public interface SupplyDetailService {
     List<SupplyDetail> readAll();
 
 
+    public boolean update(Long id, SupplyDetail supplyDetail);
+
 
 }

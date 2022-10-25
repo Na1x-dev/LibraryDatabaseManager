@@ -16,9 +16,9 @@
                autofocus="true" required="required" th:field="${newSale.client.clientName}"/>
         <input type="email" class="sale-input client-input" placeholder="Электронная почта"
                autofocus="true" required="required" th:field="${newSale.client.email}"/>
-        <input type="text" class="sale-input client-input" placeholder="Телефон"
-               autofocus="true" required="required"
-               th:field="${newSale.client.phone}"/>
+<!--        <input type="text" class="sale-input client-input" placeholder="Телефон"-->
+<!--               autofocus="true" required="required"-->
+<!--               th:field="${newSale.client.phone}"/>-->
         <input type="text" class="sale-input client-input" placeholder="Город"
                autofocus="true" required="required"
                th:field="${newSale.client.city.title}"/>
@@ -58,6 +58,7 @@
 <!--        </div>-->
         <button type="submit" class="save-sale-button new-sale-button">Сохранить</button>
     </div>
+    <div class="error-text" th:text="${bookError}">some error</div>
 </form>
 </body>
 </html>

@@ -24,4 +24,15 @@ public class SupplyDetailServiceImpl implements SupplyDetailService {
     public List<SupplyDetail> readAll() {
         return supplyDetailJpaRepository.findAll();
     }
+
+    @Override
+    public boolean update(Long id, SupplyDetail supplyDetail) {
+        if (supplyDetailJpaRepository.existsById(id)) {
+            supplyDetail.setSupplyDetailId(id);
+            supplyDetailJpaRepository.save(supplyDetail);
+            return true;
+        }
+        return false;
+    }
+
 }

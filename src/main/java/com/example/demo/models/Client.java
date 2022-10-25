@@ -28,9 +28,9 @@ public class Client {
     @NonNull
     String email;
 
-    @Column(name = "phone")
-    @NonNull
-    String phone;
+//    @Column(name = "phone")
+//    @NonNull
+//    String phone;
 
     @Column(name = "client_address")
     @NonNull
@@ -50,6 +50,6 @@ public class Client {
         city = new City();
         clientAddress = "";
         email = "";
-        phone = "";
+//        phone = "";
     }
 }

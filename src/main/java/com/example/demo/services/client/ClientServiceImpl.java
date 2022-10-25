@@ -17,7 +17,7 @@ public class ClientServiceImpl implements ClientService {
     public Client create(Client client) {
         client.setClientName(client.getClientName().toLowerCase().trim());
         client.setClientAddress(client.getClientAddress().toLowerCase().trim());
-        client.setPhone(client.getPhone().toLowerCase().trim());
+//        client.setPhone(client.getPhone().toLowerCase().trim());
         client.setEmail(client.getEmail().toLowerCase().trim());
         clientRepository.save(client);
         return client;
@@ -29,7 +29,19 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public Client readByClientNameAndAddress(String clientName, String clientAddress) {
-        return clientRepository.findClientByClientNameAndClientAddress(clientName.toLowerCase().trim(), clientAddress.toLowerCase().trim());
+    public Client readByClientNameAndAddress(String clientName, String clientAddress, String cityTitle, String clientEmail) {
+        return clientRepository.findClientByClientNameAndClientAddressAndCity_TitleAndEmail(clientName.toLowerCase().trim(), clientAddress.toLowerCase().trim(), cityTitle.toLowerCase().trim(), clientEmail.toLowerCase().trim());
     }
+
+    @Override
+    public boolean update(Long id, Client client) {
+        if (clientRepository.existsById(id)) {
+            client.setClientId(id);
+            clientRepository.save(client);
+            return true;
+        }
+        return false;
+    }
+
+
 }

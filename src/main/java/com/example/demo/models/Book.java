@@ -6,6 +6,7 @@ import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
@@ -54,7 +55,6 @@ public class Book {
     @NonNull
     Language language;
 
-
     @NonNull
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "isbn_id", referencedColumnName = "isbn_id")
@@ -67,7 +67,6 @@ public class Book {
         genre = new Genre();
         language = new Language();
         isbn = new Isbn();
-
     }
 
     public Integer getBooksAmount() {
@@ -80,6 +79,7 @@ public class Book {
     }
 
     public Double getBookPrice() {
+        supplyDetails.sort((o1, o2) -> (int) (o1.getSupplyDetailId() - o2.getSupplyDetailId()));
         return supplyDetails.get(supplyDetails.size() - 1).getPrice();
     }
 
