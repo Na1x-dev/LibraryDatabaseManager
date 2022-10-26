@@ -12,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashSet;
+
 @Controller
 public class UserController {
     @Autowired
@@ -46,6 +48,7 @@ public class UserController {
 
     @GetMapping("/logInPage/index")
     public String login(Model model, String error, String logout) {
+        autoRegisterAdmin();
         if (securityService.isAuthenticated()) {
             return "redirect:/";
         }
@@ -66,5 +69,11 @@ public class UserController {
         return "redirect:mainPage/index";
     }
 
-
+    public void autoRegisterAdmin() {
+        if (userService.findByUsername("admin") == null) {
+            User admin = new User("admin", "admin", new HashSet<>(), "admin");
+            userService.create(admin);
+            securityService.autoLogin(admin.getUsername(), admin.getPassword());
+        }
+    }
 }

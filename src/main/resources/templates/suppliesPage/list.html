@@ -10,7 +10,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="supply : ${supplies}" class="table-row">
+        <tr th:each="i : ${#numbers.sequence(supplies.size() - 1, 0, -1)}" th:with="supply=${supplies[i]}" class="table-row">
             <td style="text-align: center">
                 <div class="supply-id" th:text="${supply.supplyId}">
                 </div>
@@ -27,7 +27,6 @@
                 <div class="supplier-name">
                 </div>
             </td>
-
         </tr>
         </tbody>
     </table>

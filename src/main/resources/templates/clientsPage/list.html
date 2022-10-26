@@ -12,7 +12,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="client : ${clients}" class="table-row">
+        <tr th:each="i : ${#numbers.sequence(clients.size() - 1, 0, -1)}" th:with="client=${clients[i]}" class="table-row">
             <td style="text-align: center">
                 <div class="client-id" th:text="${client.clientId}">
                 </div>

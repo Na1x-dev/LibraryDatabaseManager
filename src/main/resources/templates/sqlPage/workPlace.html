@@ -1,0 +1,39 @@
+
+<div class="main-table" th:fragment="list">
+<!--    <table class="table">-->
+<!--        <thead>-->
+<!--        <tr>-->
+<!--            <th style="width: 10%">#</th>-->
+<!--            <th style="width: 35%">Название книги</th>-->
+<!--            <th style="width: 35%">Автор</th>-->
+<!--            <th style="width: 20%">Количество</th>-->
+<!--        </tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+<!--        <tr th:each="book : ${books}" class="table-row">-->
+<!--            <td style="text-align: center">-->
+<!--                <div class="book-id" th:text="${book.bookId}">-->
+<!--                </div>-->
+<!--            </td>-->
+<!--            <td style="text-align: center">-->
+<!--                <div class="book-name" th:text="${book.title}">-->
+<!--                </div>-->
+<!--            </td>-->
+<!--            <td style="text-align: center" th:text="${book.author.authorName}">-->
+<!--                <div class="book-author">-->
+<!--                </div>-->
+<!--            </td>-->
+<!--            <td style="text-align: center">-->
+<!--                <div class="book-amount" th:text="${book.getBooksAmount()}">-->
+<!--                </div>-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--        </tbody>-->
+<!--    </table>-->
+    <form method="post" id="sql-command-form" th:action="@{/sqlPage/index}">
+        <label>
+            <textarea class="sql-command-textarea" form="sql-command-form" placeholder="Введите ваш SQL-запрос" rows="7" autofocus="autofocus" th:text="${sqlRequest.sqlString}" th:field="${sqlRequest.sqlString}"></textarea>
+        </label>
+        <button class="send-sql-command" type="submit">Выполнить запрос</button>
+    </form>
+</div>

@@ -63,14 +63,6 @@ public class MainController {
         return "suppliesPage/index";
     }
 
-
-
-    @GetMapping({"/sqlPage/index"})
-    public String sqlPage(Model model) {
-        model.addAttribute("books", bookService.readAll());
-        return "sqlPage/index";
-    }
-
     @GetMapping({"/newSupplyPage/index"})
     public String newSupply(Model model) {
         Supply newSupply = new Supply();

@@ -114,3 +114,5 @@ create table if not exists supply_details
     amount bigint,
     supply_id bigint references supplies(supply_id)
 );
+
+-- insert into users (id, username, password) values (0, 'admin', 'admin');

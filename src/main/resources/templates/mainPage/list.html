@@ -14,7 +14,8 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="book : ${books}" class="table-row">
+        <tr th:each="i : ${#numbers.sequence(books.size() - 1, 0, -1)}" th:with="book=${books[i]}" class="table-row">
+
             <td style="text-align: center">
                 <div class="book-id" th:text="${book.bookId}">
                 </div>
