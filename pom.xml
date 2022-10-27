@@ -61,7 +61,7 @@
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
-			<version>42.2.26</version>
+			<version>42.5.0</version>
 		</dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -93,7 +93,7 @@
             <artifactId>jetty-util-ajax</artifactId>
             <version>11.0.12</version>
         </dependency>
-    </dependencies>
+	</dependencies>
 
 	<build>
 		<plugins>

@@ -1,3 +1,44 @@
-.sql-header-button{
+.sql-header-button {
     border-bottom: 5px solid #333333;
+}
+
+.sql-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+}
+
+.sql-textarea {
+    width: 100%;
+    background-color: white;
+    border: 0;
+    border-right: 1px solid #333333;
+    border-left: 1px solid #333333;
+    border-bottom: 1px solid #333333;
+    font-size: 20px;
+    padding: 10px;
+    outline: none;
+    resize: vertical;
+}
+
+.send-sql-command {
+    width: 100%;
+    color: #333333;
+    background-color: white;
+    border: 0;
+    border-right: 1px solid #333333;
+    border-left: 1px solid #333333;
+    border-bottom: 1px solid #333333;
+    font-size: 20px;
+    padding: 10px;
+}
+
+.send-sql-command:hover {
+    background-color: #eeeeee;
+    cursor: pointer;
+}
+
+.sql-output:hover{
+    cursor: default;
 }
