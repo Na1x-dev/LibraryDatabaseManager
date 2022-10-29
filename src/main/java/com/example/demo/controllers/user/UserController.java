@@ -1,9 +1,11 @@
 package com.example.demo.controllers.user;
 
+import com.example.demo.models.Role;
 import com.example.demo.models.User;
 import com.example.demo.security.SecurityService;
 
 
+import com.example.demo.services.role.RoleService;
 import com.example.demo.services.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -12,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.HashSet;
 
 @Controller
@@ -22,6 +25,8 @@ public class UserController {
     private SecurityService securityService;
     @Autowired
     private UserValidator userValidator;
+    @Autowired
+    private RoleService roleService;
 
     @GetMapping("/signUpPage/index")
     public String registration(Model model) {
@@ -48,6 +53,7 @@ public class UserController {
 
     @GetMapping("/logInPage/index")
     public String login(Model model, String error, String logout) {
+        autoCreateRoles();
         autoRegisterAdmin();
         if (securityService.isAuthenticated()) {
             return "redirect:/";
@@ -71,9 +77,21 @@ public class UserController {
 
     public void autoRegisterAdmin() {
         if (userService.findByUsername("admin") == null) {
-            User admin = new User("admin", "admin", new HashSet<>(), "admin");
+            Role role = roleService.readByRoleName("ROLE_ADMIN");
+            User admin = new User("admin", "admin", role, "admin");
             userService.create(admin);
             securityService.autoLogin(admin.getUsername(), admin.getPassword());
+        }
+    }
+
+    public void autoCreateRoles() {
+        if (roleService.readByRoleName("ROLE_ADMIN") == null) {
+            Role role = new Role("ROLE_ADMIN");
+            roleService.create(role);
+        }
+        if (roleService.readByRoleName("ROLE_USER") == null) {
+            Role role = new Role("ROLE_USER");
+            roleService.create(role);
         }
     }
 }

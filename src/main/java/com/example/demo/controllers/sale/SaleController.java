@@ -6,6 +6,7 @@ import com.example.demo.services.city.CityService;
 import com.example.demo.services.client.ClientService;
 import com.example.demo.services.sale.SaleService;
 import com.example.demo.services.supplyDetail.SupplyDetailService;
+import com.example.demo.services.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -27,16 +29,20 @@ public class SaleController {
     BookService bookService;
     @Autowired
     SupplyDetailService supplyDetailService;
+    @Autowired
+    UserService userService;
 
     @GetMapping({"/salesPage/index"})
-    public String salesPage(Model model) {
+    public String salesPage(Model model, Principal user) {
+        model.addAttribute("user", userService.findByUsername(user.getName()));
         model.addAttribute("sales", saleService.readAll());
         return "salesPage/index";
     }
 
     @GetMapping({"/newSalePage/index"})
-    public String newSale(Model model) {
+    public String newSale(Model model, Principal user) {
         Sale newSale = new Sale();
+        model.addAttribute("user", userService.findByUsername(user.getName()));
         model.addAttribute("newSale", newSale);
         return "newSalePage/index";
     }
@@ -78,7 +84,7 @@ public class SaleController {
 
     private Boolean sellBooks(Sale sale, Model model) {
         Book book = bookService.readByBookTitleAndAuthorAndPublisherAndLanguage(sale.getBook().getTitle().toLowerCase().trim(), sale.getBook().getAuthor().getAuthorName().toLowerCase().trim(), sale.getBook().getPublisher().getPublisherTitle().toLowerCase().trim(), sale.getBook().getLanguage().getLanguageName().toLowerCase().trim());
-        if(book==null){
+        if (book == null) {
             model.addAttribute("bookError", "Такой книги нет в магазине");
             return false;
         }

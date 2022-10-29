@@ -7,6 +7,7 @@ import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -19,7 +20,6 @@ import java.util.Set;
 @Getter
 @Setter
 @ToString
-@RequiredArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties({"hibernateLazyInitializer"})
 public class User {
@@ -54,5 +54,21 @@ public class User {
     public int hashCode() {
         return getClass().hashCode();
     }
-}
 
+    public User(String username, String password, Role role, String passwordConfirm) {
+        this.username = username;
+        this.password = password;
+        this.passwordConfirm = passwordConfirm;
+        roles = new HashSet<>();
+        roles.add(role);
+    }
+
+    public boolean isAdmin() {
+        for (Role role : roles) {
+            if (role.name.equals("ROLE_ADMIN")) {
+                return true;
+            }
+        }
+        return false;
+    }
+}

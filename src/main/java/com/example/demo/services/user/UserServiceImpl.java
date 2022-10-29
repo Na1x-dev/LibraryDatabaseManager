@@ -1,5 +1,6 @@
 package com.example.demo.services.user;
 
+import com.example.demo.models.Role;
 import com.example.demo.models.User;
 import com.example.demo.repositories.role.RoleJpaRepository;
 import com.example.demo.repositories.user.UserJpaRepository;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Set;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -30,4 +32,6 @@ public class UserServiceImpl implements UserService {
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);
     }
+
+
 }

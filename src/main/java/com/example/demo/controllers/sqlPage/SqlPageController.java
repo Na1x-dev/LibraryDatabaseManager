@@ -3,24 +3,29 @@ package com.example.demo.controllers.sqlPage;
 import com.example.demo.models.Sale;
 import com.example.demo.models.SqlRequest;
 import com.example.demo.models.TableContent;
+import com.example.demo.services.user.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.security.Principal;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 public class SqlPageController {
+    @Autowired
+    UserService userService;
     SqlRequest mainSqlRequest;
     TableContent mainTableContent;
     private static Connection connection;
 
     @GetMapping({"/sqlPage/index"})
-    public String sqlPageGet(Model model) {
+    public String sqlPageGet(Model model, Principal user) {
         if (mainSqlRequest == null) {
             mainSqlRequest = new SqlRequest();
             connection = getNewConnection();
@@ -30,6 +35,7 @@ public class SqlPageController {
         }
         model.addAttribute("tableContent", mainTableContent);
         model.addAttribute("sqlRequest", mainSqlRequest);
+        model.addAttribute("user", userService.findByUsername(user.getName()));
         return "sqlPage/index";
     }
 

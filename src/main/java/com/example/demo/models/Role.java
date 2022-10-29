@@ -10,7 +10,6 @@ import java.util.Set;
 
 
 @Data
-@NoArgsConstructor
 @JsonIgnoreProperties("hibernateLazyInitializer")
 @Entity
 @Table(name = "roles")
@@ -24,4 +23,12 @@ public class Role {
 
     @ManyToMany(mappedBy = "roles")
     @NonNull Set<User> users;
+
+    public Role() {
+        name = "";
+    }
+
+    public Role(String roleName){
+        name = roleName;
+    }
 }

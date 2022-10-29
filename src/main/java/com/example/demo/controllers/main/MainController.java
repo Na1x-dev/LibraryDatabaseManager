@@ -12,6 +12,7 @@ import com.example.demo.services.sale.SaleService;
 import com.example.demo.services.supplier.SupplierService;
 import com.example.demo.services.supply.SupplyService;
 import com.example.demo.services.supplyDetail.SupplyDetailService;
+import com.example.demo.services.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,10 +20,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.security.Principal;
 import java.util.List;
 
 @Controller
 public class MainController {
+    @Autowired
+    UserService userService;
     @Autowired
     BookService bookService;
     @Autowired
@@ -46,26 +50,30 @@ public class MainController {
     SupplyDetailService supplyDetailService;
 
     @GetMapping({"/mainPage/index"})
-    public String mainPage(Model model) {
+    public String mainPage(Model model, Principal user) {
+        model.addAttribute("user", userService.findByUsername(user.getName()));
         model.addAttribute("books", bookService.readAll());
         return "mainPage/index";
     }
 
     @GetMapping({"/clientsPage/index"})
-    public String clientsPage(Model model) {
+    public String clientsPage(Model model, Principal user) {
+        model.addAttribute("user", userService.findByUsername(user.getName()));
         model.addAttribute("clients", clientService.readAll());
         return "clientsPage/index";
     }
 
     @GetMapping({"/suppliesPage/index"})
-    public String suppliesPage(Model model) {
+    public String suppliesPage(Model model, Principal user) {
+        model.addAttribute("user", userService.findByUsername(user.getName()));
         model.addAttribute("supplies", supplyService.readAll());
         return "suppliesPage/index";
     }
 
     @GetMapping({"/newSupplyPage/index"})
-    public String newSupply(Model model) {
+    public String newSupply(Model model, Principal user) {
         Supply newSupply = new Supply();
+        model.addAttribute("user", userService.findByUsername(user.getName()));
         model.addAttribute("newSupply", newSupply);
         return "newSupplyPage/index";
     }
