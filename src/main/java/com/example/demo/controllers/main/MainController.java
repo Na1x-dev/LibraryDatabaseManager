@@ -51,21 +51,21 @@ public class MainController {
 
     @GetMapping({"/mainPage/index"})
     public String mainPage(Model model, Principal user) {
-        model.addAttribute("user", userService.findByUsername(user.getName()));
+        model.addAttribute("checkUser", userService.findByUsername(user.getName()));
         model.addAttribute("books", bookService.readAll());
         return "mainPage/index";
     }
 
     @GetMapping({"/clientsPage/index"})
     public String clientsPage(Model model, Principal user) {
-        model.addAttribute("user", userService.findByUsername(user.getName()));
+        model.addAttribute("checkUser", userService.findByUsername(user.getName()));
         model.addAttribute("clients", clientService.readAll());
         return "clientsPage/index";
     }
 
     @GetMapping({"/suppliesPage/index"})
     public String suppliesPage(Model model, Principal user) {
-        model.addAttribute("user", userService.findByUsername(user.getName()));
+        model.addAttribute("checkUser", userService.findByUsername(user.getName()));
         model.addAttribute("supplies", supplyService.readAll());
         return "suppliesPage/index";
     }
@@ -73,7 +73,7 @@ public class MainController {
     @GetMapping({"/newSupplyPage/index"})
     public String newSupply(Model model, Principal user) {
         Supply newSupply = new Supply();
-        model.addAttribute("user", userService.findByUsername(user.getName()));
+        model.addAttribute("checkUser", userService.findByUsername(user.getName()));
         model.addAttribute("newSupply", newSupply);
         return "newSupplyPage/index";
     }

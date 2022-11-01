@@ -1,0 +1,72 @@
+<div class="main-table" th:fragment="list" xmlns:th="http://www.w3.org/1999/xhtml">
+    <a class="to-new-user-button to-something-new-button" href="../newUserPage/index.html"
+       th:href="@{../../newUserPage/index}">Новый сотрудник</a>
+    <table class="table">
+        <thead>
+        <tr>
+            <th style="width: 10%">id</th>
+            <th style="width: 70%">Имя пользователя</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${users}" class="table-row">
+            <td style="text-align: center">
+                <div class="user-id" th:text="${user.userId}">
+                </div>
+            </td>
+            <td style="text-align: center">
+                <div class="user-username" th:text="${user.username}">
+                </div>
+            </td>
+
+            <td style="text-align: center">
+                <dialog id="update-dialog" class="update-dialog dialog">
+                    <form th:fragment="user-form" class="user-container" th:action="@{'/userPage/index/update/'+${user.userId}}" method="post">
+                        <div class="some-text" th:text="'Изменение данных ' + ${user.username}">
+                            Изменение
+                        </div>
+                        <input type="text" name="username" class="user-input" placeholder="Имя пользователя"
+                               autofocus="true" required="required" th:value="${user.username}" th:field="${updateUser.username}"/>
+                        <input type="text" name="password" class="user-input" placeholder="Пароль"
+                               autofocus="true" required="required" th:field="${updateUser.password}"/>
+                        <div class="bottom-user-buttons">
+                            <button type="submit" class="confirm-update-user-button dialog-button">Изменить</button>
+                            <button type="button" class="close-update-dialog dialog-button">Отмена</button>
+                        </div>
+                    </form>
+                    <!--        <span class="has-error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">some error error error error error</span>-->
+                    <!--        <span class="has-error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">some error error error error error</span>-->
+                </dialog>
+                <a class="user-update-button open-update-dialog open-dialog" th:onclick="
+                    let tdParent = this.closest('td');
+                    let dialogCloseButton = tdParent.querySelector('.user-container').querySelector('.bottom-user-buttons').querySelector('.close-update-dialog');
+                    let updateDialog = tdParent.querySelector('#update-dialog');
+                    updateDialog.show();
+                    dialogCloseButton.onclick = function(){
+                    updateDialog.close();}">Изменить
+                </a>
+            </td>
+
+            <td style="text-align: center" class="delete-button-td">
+                <dialog id="delete-dialog" class="delete-dialog dialog">
+                    <div class="some-text" th:text="'Вы действительно хотите удалить сотрудника ' + ${user.username} + '?'">
+                        Удаление
+                    </div>
+                    <a class="dialog-button" id="confirm-delete-user-button" th:href="@{'/userPage/index/delete/'+${user.userId}}">Да</a>
+                    <button id="close-delete-dialog-button" class="dialog-button" autofocus>Нет</button>
+                </dialog>
+                <!--                th:href="@{'/userPage/index/delete/id='+${user.userId}}"-->
+                <a class="user-delete-button open-delete-dialog open-dialog" th:onclick="
+                    let tdParent = this.closest('td');
+                    let deleteDialog = tdParent.querySelector('#delete-dialog');
+                    deleteDialog.show();
+                    tdParent.querySelector('#close-delete-dialog-button').onclick = function(){
+                    deleteDialog.close();}">Удалить
+                </a>
+
+
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

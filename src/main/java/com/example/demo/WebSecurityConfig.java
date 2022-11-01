@@ -39,6 +39,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/salesPage/index").permitAll()
                 .antMatchers("/suppliesPage/index").permitAll()
                 .antMatchers("/sqlPage/index").access("hasRole('ROLE_ADMIN')")
+                .antMatchers("/userPage/index").access("hasRole('ROLE_ADMIN')")
+                .antMatchers("/newUserPage/index").access("hasRole('ROLE_ADMIN')")
                 .anyRequest().authenticated()
 
                 .and()

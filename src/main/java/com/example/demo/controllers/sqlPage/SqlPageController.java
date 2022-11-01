@@ -35,7 +35,7 @@ public class SqlPageController {
         }
         model.addAttribute("tableContent", mainTableContent);
         model.addAttribute("sqlRequest", mainSqlRequest);
-        model.addAttribute("user", userService.findByUsername(user.getName()));
+        model.addAttribute("checkUser", userService.findByUsername(user.getName()));
         return "sqlPage/index";
     }
 

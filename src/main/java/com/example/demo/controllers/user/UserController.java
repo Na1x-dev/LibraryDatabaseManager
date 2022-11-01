@@ -34,9 +34,7 @@ public class UserController {
             return "redirect:/";
         }
         User user = new User();
-
         model.addAttribute("userForm", user);
-
         return "signUpPage/index";
     }
 
@@ -47,7 +45,7 @@ public class UserController {
             return "signUpPage/index";
         }
         userService.create(userForm);
-        securityService.autoLogin(userForm.getUsername(), userForm.getPasswordConfirm());
+//        securityService.autoLogin(userForm.getUsername(), userForm.getPasswordConfirm());
         return "redirect:/mainPage/index";
     }
 

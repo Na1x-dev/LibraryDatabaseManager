@@ -48,7 +48,7 @@ public class I18NConfig extends WebMvcConfigurerAdapter {
         messageSource.setCacheSeconds(5); //refresh cache once per 5 sec
         messageSource.setDefaultEncoding("UTF-8");
         messageSource.setFallbackToSystemLocale(false);
-        messageSource.setBasenames("classpath:/WEB-INF/validation", "classpath:/WEB-INF/logInPage", "classpath:/WEB-INF/signUpPage");
+        messageSource.setBasenames("classpath:/WEB-INF/validation", "classpath:/WEB-INF/logInPage","classpath:/WEB-INF/newUserPage", "classpath:/WEB-INF/signUpPage");
 //        System.out.println(messageSource.getBasenameSet());
         return messageSource;
     }

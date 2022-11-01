@@ -34,7 +34,7 @@ public class SaleController {
 
     @GetMapping({"/salesPage/index"})
     public String salesPage(Model model, Principal user) {
-        model.addAttribute("user", userService.findByUsername(user.getName()));
+        model.addAttribute("checkUser", userService.findByUsername(user.getName()));
         model.addAttribute("sales", saleService.readAll());
         return "salesPage/index";
     }
@@ -42,7 +42,7 @@ public class SaleController {
     @GetMapping({"/newSalePage/index"})
     public String newSale(Model model, Principal user) {
         Sale newSale = new Sale();
-        model.addAttribute("user", userService.findByUsername(user.getName()));
+        model.addAttribute("checkUser", userService.findByUsername(user.getName()));
         model.addAttribute("newSale", newSale);
         return "newSalePage/index";
     }

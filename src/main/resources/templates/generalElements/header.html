@@ -1,8 +1,9 @@
-<header th:if="${user.isAdmin()}" th:fragment="header" class="header" xmlns:th="">
+<header th:if="${checkUser.isAdmin()}" th:fragment="header" class="header" xmlns:th="">
     <a class="header-button books-header-button" th:href="@{../../../../mainPage/index}">Наличие книг</a>
     <a class="header-button clients-header-button" th:href="@{../../../../clientsPage/index}">Покупатели</a>
     <a class="header-button supplies-header-button" th:href="@{../../../../suppliesPage/index}">Поступления</a>
     <a class="header-button sales-header-button" th:href="@{../../../../salesPage/index}">Продажи</a>
     <a class="header-button sql-header-button" th:href="@{../../../../sqlPage/index}">SQL-запросы</a>
+    <a class="header-button users-header-button" th:href="@{../../../../userPage/index}">Сотрудники</a>
     <a class="header-button logout-button" th:href="@{/logout}">Выход</a>
 </header>
