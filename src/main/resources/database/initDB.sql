@@ -37,13 +37,13 @@ create table if not exists isbn_table
 (
     isbn_id bigserial primary key,
     isbn_number varchar(250) not null
---     book_id bigint
+--    book_id bigint
 );
 
 alter table isbn_table drop constraint if exists book_id;
 alter table books drop constraint if exists isbn_id;
 alter table if exists books add constraint isbn_id foreign key (isbn_id) references isbn_table(isbn_id);
-alter table if exists isbn_table add constraint book_id foreign key (book_id) references books(book_id);
+--alter table if exists isbn_table add constraint book_id foreign key (book_id) references books(book_id);
 
 create table if not exists cities
 (
