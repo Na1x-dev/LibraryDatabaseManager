@@ -44,14 +44,13 @@ public class SqlPageController {
         mainSqlRequest = sqlRequest;
         executeUpdate(mainSqlRequest.getSqlString(), tableContent);
         mainTableContent=tableContent;
-        System.out.println(mainTableContent.getTableHeader());
         model.addAttribute("tableContent", mainTableContent);
         model.addAttribute("sqlRequest", mainSqlRequest);
         return "redirect:/sqlPage/index";
     }
 
     private Connection getNewConnection() {
-        String url = "jdbc:postgresql://localhost:5432/testlib";
+        String url = "jdbc:postgresql://localhost:5432/testlib2";
         String user = "postgres";
         String passwd = "123";
         try {
@@ -76,9 +75,7 @@ public class SqlPageController {
                     List<String> tableColumnContent = new ArrayList<>();
                     for (int i = 1; i <= resultSet.getMetaData().getColumnCount(); i++) {
                         tableColumnContent.add(resultSet.getString(i));
-                        System.out.println(resultSet.getString(i));
                     }
-                    System.out.println();
                     tableContent.getTableRowContent().add(tableColumnContent);
                 }
                 mainSqlRequest.setError("");

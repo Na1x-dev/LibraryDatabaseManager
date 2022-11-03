@@ -19,12 +19,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
 import java.util.List;
 
 @Controller
 public class MainController {
+    Supply newSupply;
     @Autowired
     UserService userService;
     @Autowired
@@ -72,7 +74,9 @@ public class MainController {
 
     @GetMapping({"/newSupplyPage/index"})
     public String newSupply(Model model, Principal user) {
-        Supply newSupply = new Supply();
+        if (newSupply == null) {
+            newSupply = new Supply();
+        }
         model.addAttribute("checkUser", userService.findByUsername(user.getName()));
         model.addAttribute("newSupply", newSupply);
         return "newSupplyPage/index";
@@ -80,9 +84,28 @@ public class MainController {
 
     @PostMapping({"/newSupplyPage/index"})
     public String newSupply(Model model, @ModelAttribute("newSupply") Supply newSupply) {
-//        saveBook(newSupply.getSupplyDetails().get(0).getBook());
-        saveSupply(newSupply);
+        this.newSupply = newSupply;
+        saveSupply(this.newSupply);
         return "redirect:/mainPage/index";
+    }
+
+    @GetMapping({"/newSupplyPage/index/addBook"})
+    public String addBookToSupply(Model model, Principal user) {
+        System.out.println(newSupply);
+        model.addAttribute("checkUser", userService.findByUsername(user.getName()));
+        newSupply.getSupplyDetails().add(new SupplyDetail());
+        model.addAttribute("newSupply", newSupply);
+        return "redirect:/newSupplyPage/index";
+    }
+
+    @GetMapping({"/newSupplyPage/index/removeBook"})
+    public String removeBookFromSupply(Model model, Principal user) {
+        model.addAttribute("checkUser", userService.findByUsername(user.getName()));
+        if (newSupply.getSupplyDetails().size() > 1) {
+            newSupply.getSupplyDetails().remove(newSupply.getSupplyDetails().size() - 1);
+        }
+        model.addAttribute("newSupply", newSupply);
+        return "redirect:/newSupplyPage/index";
     }
 
     public Publisher savePublisher(Publisher publisher) {

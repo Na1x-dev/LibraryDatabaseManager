@@ -53,6 +53,8 @@
     border: 1px solid #333333;
     font-size: 15px;
     color: #333333;
+    text-align: center;
+    text-decoration: none;
 }
 
 .bottom-supply-buttons{
