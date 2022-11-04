@@ -72,9 +72,9 @@ public class UserPageController {
         if (!Objects.equals(userService.findByUsername("admin").getUserId(), userId)) {
             userService.delete(userId);
         }
-        model.addAttribute("users", userService.readAll());
+//        model.addAttribute("users", userService.readAll());
         model.addAttribute("checkUser", userService.findByUsername(user.getName()));
-        model.addAttribute("updateUser", new User());
+//        model.addAttribute("updateUser", new User());
         return "redirect:/userPage/index";
     }
 

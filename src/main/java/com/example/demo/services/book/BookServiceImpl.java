@@ -1,15 +1,10 @@
 package com.example.demo.services.book;
 
 import com.example.demo.models.Book;
-import com.example.demo.models.User;
 import com.example.demo.repositories.book.BookJpaRepository;
-import com.example.demo.repositories.role.RoleJpaRepository;
-import com.example.demo.repositories.user.UserJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
 import java.util.List;
 
 @Service
@@ -37,5 +32,29 @@ public class BookServiceImpl implements BookService {
     @Override
     public Book readByBookTitleAndAuthorAndPublisherAndLanguage(String title, String authorName, String publisherTitle, String languageName) {
         return bookRepository.findBookByTitleAndAuthorAuthorNameAndPublisherPublisherTitleAndLanguageLanguageName(title, authorName, publisherTitle, languageName);
+    }
+
+    @Override
+    public boolean update(Book book, Long id) {
+        if (bookRepository.existsById(id)) {
+            book.setBookId(id);
+            bookRepository.save(book);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean delete(Long userId) {
+        if (bookRepository.existsById(userId)) {
+            bookRepository.deleteById(userId);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public Book readById(Long bookId) {
+        return bookRepository.readByBookId(bookId);
     }
 }

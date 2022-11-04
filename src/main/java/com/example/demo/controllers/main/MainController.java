@@ -16,13 +16,16 @@ import com.example.demo.services.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 public class MainController {
@@ -54,6 +57,7 @@ public class MainController {
     @GetMapping({"/mainPage/index"})
     public String mainPage(Model model, Principal user) {
         model.addAttribute("checkUser", userService.findByUsername(user.getName()));
+        model.addAttribute("updateBook", new Book());
         model.addAttribute("books", bookService.readAll());
         return "mainPage/index";
     }
@@ -83,8 +87,9 @@ public class MainController {
     }
 
     @PostMapping({"/newSupplyPage/index"})
-    public String newSupply(Model model, @ModelAttribute("newSupply") Supply newSupply) {
+    public String newSupply(Model model, @ModelAttribute("newSupply") Supply newSupply, Principal user) {
         this.newSupply = newSupply;
+        model.addAttribute("checkUser", userService.findByUsername(user.getName()));
         saveSupply(this.newSupply);
         return "redirect:/mainPage/index";
     }
@@ -106,6 +111,23 @@ public class MainController {
         }
         model.addAttribute("newSupply", newSupply);
         return "redirect:/newSupplyPage/index";
+    }
+
+    @PostMapping("/mainPage/index/update/{id}")
+    public String updateBook(Model model, @ModelAttribute("updateBook") Book updateBook, Principal user, @PathVariable("id") Long bookId) {
+        model.addAttribute("checkUser", userService.findByUsername(user.getName()));
+        Book book = bookService.readById(bookId);
+        updateBook(book, updateBook);
+//        updateBook.setBookId(bookId);
+        bookService.update(book, bookId);
+        return "redirect:/mainPage/index";
+    }
+
+    @GetMapping("/mainPage/index/delete/{id}")
+    public String deleteBook(Model model, Principal user, @PathVariable("id") Long userId) {
+        bookService.delete(userId);
+        model.addAttribute("checkUser", userService.findByUsername(user.getName()));
+        return "redirect:/mainPage/index";
     }
 
     public Publisher savePublisher(Publisher publisher) {
@@ -147,6 +169,15 @@ public class MainController {
             return languageService.create(language);
         else
             return someLanguage;
+    }
+
+    public void updateBook(Book book, Book updateBook){
+        book.setTitle(updateBook.getTitle());
+        book.setAuthor(saveAuthor(updateBook.getAuthor()));
+        book.setGenre(saveGenre(updateBook.getGenre()));
+        book.setIsbn(saveIsbn(updateBook));
+        book.setLanguage(saveLanguage(updateBook.getLanguage()));
+        book.setPublisher(savePublisher(updateBook.getPublisher()));
     }
 
     public Book saveBook(Book book) {

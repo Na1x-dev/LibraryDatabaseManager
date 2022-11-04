@@ -1,5 +1,6 @@
-<div class="main-table" th:fragment="list">
-    <a class="to-new-supply-button to-something-new-button" href="../newSupplyPage/index.html" th:href="@{../../newSupplyPage/index}">Новое поступление</a>
+<div class="main-table" th:fragment="list" xmlns:th="http://www.w3.org/1999/xhtml">
+    <a class="to-new-supply-button to-something-new-button" href="../newSupplyPage/index.html"
+       th:href="@{../../newSupplyPage/index}">Новое поступление</a>
     <table class="table">
         <thead>
         <tr>
@@ -47,6 +48,67 @@
             <td style="text-align: center">
                 <div class="book-amount" th:text="${book.getBooksAmount()}">
                 </div>
+            </td>
+
+            <td style="text-align: center" th:if="${checkUser.isAdmin()}">
+                <dialog id="update-dialog" class="update-dialog dialog">
+                    <form th:fragment="book-form" class="book-container"
+                          th:action="@{'/mainPage/index/update/'+${book.bookId}}" method="post">
+                        <div class="some-text" th:text="'Изменение данных книги ' + ${book.title}">
+                            Изменение
+                        </div>
+                        <div class="book-inputs">
+                            <input type="text" class="supply-input book-input" placeholder="Название книги"
+                                   autofocus required="required" th:value="${book.title}" th:field="${updateBook.title}"/>
+                            <input type="text" class="supply-input book-input" placeholder="Автор"
+                                   autofocus required="required" th:value="${book.author.authorName}" th:field="${updateBook.author.authorName}"/>
+                            <input type="text" class="supply-input book-input" placeholder="Издательство"
+                                   autofocus required="required"
+                                   th:field="${updateBook.publisher.publisherTitle}" th:value="${book.publisher.publisherTitle}"/>
+                            <input type="text" class="supply-input book-input" placeholder="Жанр"
+                                   autofocus required="required" th:value="${book.genre.genreName}" th:field="${updateBook.genre.genreName}"/>
+                            <input type="text" value="loh" class="supply-input book-input" placeholder="Язык"
+                                   autofocus required="required" th:value="${book.language.languageName}" th:field="${updateBook.language.languageName}"/>
+                        </div>
+                        <!--                        <input type="text" name="username" class="user-input" placeholder="Имя пользователя"-->
+                        <!--                               autofocus="true" required="required" th:value="${user.username}" th:field="${updateUser.username}"/>-->
+                        <!--                        <input type="text" name="password" class="user-input" placeholder="Пароль"-->
+                        <!--                               autofocus="true" required="required" th:field="${updateUser.password}"/>-->
+                        <div class="bottom-book-buttons">
+                            <button type="submit" class="confirm-update-book-button dialog-button">Изменить</button>
+                            <button type="button" class="close-update-dialog dialog-button">Отмена</button>
+                        </div>
+                    </form>
+                    <!--        <span class="has-error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">some error error error error error</span>-->
+                    <!--        <span class="has-error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">some error error error error error</span>-->
+                </dialog>
+                <a class="book-update-button open-update-dialog open-dialog" th:onclick="
+                    let tdParent = this.closest('td');
+                    let dialogCloseButton = tdParent.querySelector('.book-container').querySelector('.bottom-book-buttons').querySelector('.close-update-dialog');
+                    let updateDialog = tdParent.querySelector('#update-dialog');
+                    updateDialog.show();
+                    dialogCloseButton.onclick = function(){
+                    updateDialog.close();}">Изменить
+                </a>
+            </td>
+
+            <td style="text-align: center" class="delete-button-td" th:if="${checkUser.isAdmin()}">
+                <dialog id="delete-dialog" class="delete-dialog dialog">
+                    <div class="some-text" th:text="'Вы действительно хотите удалить книгу ' + ${book.title} + '?'">
+                        Удаление
+                    </div>
+                    <a class="dialog-button" id="confirm-delete-book-button"
+                       th:href="@{'/mainPage/index/delete/'+${book.bookId}}">Да</a>
+                    <button id="close-delete-dialog-button" class="dialog-button" autofocus>Нет</button>
+                </dialog>
+                <!--                th:href="@{'/userPage/index/delete/id='+${user.userId}}"-->
+                <a class="book-delete-button open-delete-dialog open-dialog" th:onclick="
+                    let tdParent = this.closest('td');
+                    let deleteDialog = tdParent.querySelector('#delete-dialog');
+                    deleteDialog.show();
+                    tdParent.querySelector('#close-delete-dialog-button').onclick = function(){
+                    deleteDialog.close();}">Удалить
+                </a>
             </td>
         </tr>
         </tbody>

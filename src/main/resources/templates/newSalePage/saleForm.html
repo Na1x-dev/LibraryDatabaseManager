@@ -48,7 +48,7 @@
         <!--        <input type="number" step="0.01" class="sale-input book-input" placeholder="Цена одной книги"-->
         <!--               autofocus="true" required="required" th:field="${newSupply.supplyDetails[0].price}"/>-->
         <input type="number" id="amount-input" class="sale-input" placeholder="Количество"
-               autofocus="true" required="required" th:field="${newSale.amount}"/>
+               autofocus="true" required="required" min="0" th:field="${newSale.amount}"/>
     </div>
 
     <div class="bottom-sale-buttons">
