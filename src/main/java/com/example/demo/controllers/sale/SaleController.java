@@ -48,7 +48,8 @@ public class SaleController {
     }
 
     @PostMapping({"/newSalePage/index"})
-    public String newSale(Model model, @ModelAttribute("newSale") Sale newSale) {
+    public String newSale(Model model, @ModelAttribute("newSale") Sale newSale, Principal user) {
+        model.addAttribute("checkUser", userService.findByUsername(user.getName()));
 //        saveBook(newSupply.getSupplyDetails().get(0).getBook());
         if (sellBooks(newSale, model)) {
             saveSale(newSale);
