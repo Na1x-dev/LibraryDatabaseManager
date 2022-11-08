@@ -26,9 +26,9 @@
                             Изменение
                         </div>
                         <input type="text" name="username" class="user-input" placeholder="Имя пользователя"
-                               autofocus="true" required="required" th:value="${user.username}" th:field="${updateUser.username}"/>
+                               autofocus="true" required="required" th:value="${user.username}" th:name="username"/>
                         <input type="text" name="password" class="user-input" placeholder="Пароль"
-                               autofocus="true" required="required" th:field="${updateUser.password}"/>
+                               autofocus="true" required="required" th:name="password"/>
                         <div class="bottom-user-buttons">
                             <button type="submit" class="confirm-update-user-button dialog-button">Изменить</button>
                             <button type="button" class="close-update-dialog dialog-button">Отмена</button>

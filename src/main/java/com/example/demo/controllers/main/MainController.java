@@ -66,6 +66,7 @@ public class MainController {
     public String clientsPage(Model model, Principal user) {
         model.addAttribute("checkUser", userService.findByUsername(user.getName()));
         model.addAttribute("clients", clientService.readAll());
+        model.addAttribute("updateClient", new Client());
         return "clientsPage/index";
     }
 
@@ -118,17 +119,17 @@ public class MainController {
         model.addAttribute("checkUser", userService.findByUsername(user.getName()));
         Book book = bookService.readById(bookId);
         updateBook(book, updateBook);
-//        updateBook.setBookId(bookId);
         bookService.update(book, bookId);
         return "redirect:/mainPage/index";
     }
 
     @GetMapping("/mainPage/index/delete/{id}")
-    public String deleteBook(Model model, Principal user, @PathVariable("id") Long userId) {
-        bookService.delete(userId);
+    public String deleteBook(Model model, Principal user, @PathVariable("id") Long bookId) {
+        bookService.delete(bookId);
         model.addAttribute("checkUser", userService.findByUsername(user.getName()));
         return "redirect:/mainPage/index";
     }
+
 
     public Publisher savePublisher(Publisher publisher) {
         Publisher somePublisher = publisherService.readByPublisherTitle(publisher.getPublisherTitle());

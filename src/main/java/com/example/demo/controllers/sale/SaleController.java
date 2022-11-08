@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.security.Principal;
@@ -59,6 +60,28 @@ public class SaleController {
         }
     }
 
+    @PostMapping("/clientsPage/index/update/{id}")
+    public String updateClient(Model model, @ModelAttribute("updateClient") Client updateClient, Principal user, @PathVariable("id") Long clientId) {
+        model.addAttribute("checkUser", userService.findByUsername(user.getName()));
+        Client client = clientService.readById(clientId);
+        updateClient(client, updateClient);
+        clientService.update(clientId, client);
+        return "redirect:/clientsPage/index";
+    }
+
+    @GetMapping("/clientsPage/index/delete/{id}")
+    public String deleteClient(Model model, Principal user, @PathVariable("id") Long clientId) {
+        clientService.delete(clientId);
+        model.addAttribute("checkUser", userService.findByUsername(user.getName()));
+        return "redirect:/clientsPage/index";
+    }
+
+    public void updateClient(Client client, Client updateClient){
+        client.setClientAddress(updateClient.getClientAddress());
+        client.setClientName(updateClient.getClientName());
+        client.setEmail(updateClient.getEmail());
+        client.setCity(saveCity(updateClient.getCity()));
+    }
 
     public City saveCity(City city) {
         City someCity = cityService.readByCityTitle(city.getTitle());

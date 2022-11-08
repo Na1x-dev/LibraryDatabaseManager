@@ -45,9 +45,9 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public boolean delete(Long userId) {
-        if (bookRepository.existsById(userId)) {
-            bookRepository.deleteById(userId);
+    public boolean delete(Long bookId) {
+        if (bookRepository.existsById(bookId)) {
+            bookRepository.deleteById(bookId);
             return true;
         }
         return false;

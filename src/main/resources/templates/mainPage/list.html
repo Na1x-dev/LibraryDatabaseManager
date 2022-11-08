@@ -57,18 +57,18 @@
                         <div class="some-text" th:text="'Изменение данных книги ' + ${book.title}">
                             Изменение
                         </div>
-                        <div class="book-inputs">
+                        <div class="book-inputs" >
                             <input type="text" class="supply-input book-input" placeholder="Название книги"
-                                   autofocus required="required" th:value="${book.title}" th:field="${updateBook.title}"/>
+                                   autofocus required="required" th:value="${book.title}" th:name="title"/>
                             <input type="text" class="supply-input book-input" placeholder="Автор"
-                                   autofocus required="required" th:value="${book.author.authorName}" th:field="${updateBook.author.authorName}"/>
+                                   autofocus required="required" th:value="${book.author.authorName}" th:name="author.authorName"/>
                             <input type="text" class="supply-input book-input" placeholder="Издательство"
                                    autofocus required="required"
-                                   th:field="${updateBook.publisher.publisherTitle}" th:value="${book.publisher.publisherTitle}"/>
+                                   th:name="publisher.publisherTitle" th:value="${book.publisher.publisherTitle}"/>
                             <input type="text" class="supply-input book-input" placeholder="Жанр"
-                                   autofocus required="required" th:value="${book.genre.genreName}" th:field="${updateBook.genre.genreName}"/>
+                                   autofocus required="required" th:value="${book.genre.genreName}" th:name="genre.genreName"/>
                             <input type="text" value="loh" class="supply-input book-input" placeholder="Язык"
-                                   autofocus required="required" th:value="${book.language.languageName}" th:field="${updateBook.language.languageName}"/>
+                                   autofocus required="required" th:value="${book.language.languageName}" th:name="language.languageName"/>
                         </div>
                         <!--                        <input type="text" name="username" class="user-input" placeholder="Имя пользователя"-->
                         <!--                               autofocus="true" required="required" th:value="${user.username}" th:field="${updateUser.username}"/>-->

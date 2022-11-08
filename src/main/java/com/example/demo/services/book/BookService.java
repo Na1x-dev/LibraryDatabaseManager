@@ -14,9 +14,9 @@ public interface BookService {
 
     Book readByBookTitleAndAuthorAndPublisherAndLanguage(String title, String authorName, String publisherTitle, String languageName);
 
-    boolean update(Book book, Long userId);
+    boolean update(Book book, Long bookId);
 
-    boolean delete(Long userId);
+    boolean delete(Long bookId);
 
     Book readById(Long bookId);
 }

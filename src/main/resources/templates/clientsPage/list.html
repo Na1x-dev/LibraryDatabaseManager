@@ -1,5 +1,4 @@
-
-<div class="main-table" th:fragment="list">
+<div class="main-table" th:fragment="list" xmlns:th="http://www.w3.org/1999/xhtml">
     <table class="table">
         <thead>
         <tr>
@@ -37,6 +36,60 @@
                 <div class="client-city" th:text="${client.city.title}">
                 </div>
             </td>
+
+            <td style="text-align: center" th:if="${checkUser.isAdmin()}">
+                <dialog id="update-dialog" class="update-dialog dialog">
+                    <form th:fragment="client-form" class="client-container"
+                          th:action="@{'/clientsPage/index/update/'+${client.clientId}}" method="post">
+                        <div class="some-text" th:text="'Изменение данных клиента ' + ${client.clientName}">
+                            Изменение
+                        </div>
+                        <div class="client-inputs" >
+                            <input type="text" class="supply-input client-input" placeholder="Фамилия И.О."
+                                   autofocus required="required" th:value="${client.clientName}" th:name="clientName"/>
+                            <input type="email" class="supply-input client-input" placeholder="Электронная почта"
+                                   autofocus required="required" th:value="${client.email}" th:name="email"/>
+                            <input type="text" class="supply-input client-input" placeholder="Адрес"
+                                   autofocus required="required"
+                                   th:name="clientAddress" th:value="${client.clientAddress}"/>
+                            <input type="text" class="supply-input client-input" placeholder="Город"
+                                   autofocus required="required" th:value="${client.city.title}" th:name="city.title"/>
+                        </div>
+                        <div class="bottom-client-buttons">
+                            <button type="submit" class="confirm-update-client-button dialog-button">Изменить</button>
+                            <button type="button" class="close-update-dialog dialog-button">Отмена</button>
+                        </div>
+                    </form>
+                </dialog>
+                <a class="client-update-button open-update-dialog open-dialog" th:onclick="
+                    let tdParent = this.closest('td');
+                    let dialogCloseButton = tdParent.querySelector('.client-container').querySelector('.bottom-client-buttons').querySelector('.close-update-dialog');
+                    let updateDialog = tdParent.querySelector('#update-dialog');
+                    updateDialog.show();
+                    dialogCloseButton.onclick = function(){
+                    updateDialog.close();}">Изменить
+                </a>
+            </td>
+
+            <td style="text-align: center" class="delete-button-td" th:if="${checkUser.isAdmin()}">
+                <dialog id="delete-dialog" class="delete-dialog dialog">
+                    <div class="some-text" th:text="'Вы действительно хотите удалить клиента ' + ${client.clientName} + '?'">
+                        Удаление
+                    </div>
+                    <a class="dialog-button" id="confirm-delete-client-button"
+                       th:href="@{'/clientsPage/index/delete/'+${client.clientId}}">Да</a>
+                    <button id="close-delete-dialog-button" class="dialog-button" autofocus>Нет</button>
+                </dialog>
+                <!--                th:href="@{'/userPage/index/delete/id='+${user.userId}}"-->
+                <a class="client-delete-button open-delete-dialog open-dialog" th:onclick="
+                    let tdParent = this.closest('td');
+                    let deleteDialog = tdParent.querySelector('#delete-dialog');
+                    deleteDialog.show();
+                    tdParent.querySelector('#close-delete-dialog-button').onclick = function(){
+                    deleteDialog.close();}">Удалить
+                </a>
+            </td>
+
         </tr>
         </tbody>
     </table>

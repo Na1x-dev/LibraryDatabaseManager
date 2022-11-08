@@ -43,5 +43,17 @@ public class ClientServiceImpl implements ClientService {
         return false;
     }
 
+    @Override
+    public Client readById(Long clientId) {
+        return clientRepository.readByClientId(clientId);
+    }
 
+    @Override
+    public boolean delete(Long clientId) {
+        if (clientRepository.existsById(clientId)) {
+            clientRepository.deleteById(clientId);
+            return true;
+        }
+        return false;
+    }
 }
