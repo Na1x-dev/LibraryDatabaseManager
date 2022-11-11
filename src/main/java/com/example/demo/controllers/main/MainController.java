@@ -97,7 +97,6 @@ public class MainController {
 
     @GetMapping({"/newSupplyPage/index/addBook"})
     public String addBookToSupply(Model model, Principal user) {
-        System.out.println(newSupply);
         model.addAttribute("checkUser", userService.findByUsername(user.getName()));
         newSupply.getSupplyDetails().add(new SupplyDetail());
         model.addAttribute("newSupply", newSupply);
@@ -173,7 +172,7 @@ public class MainController {
     }
 
     public void updateBook(Book book, Book updateBook){
-        book.setTitle(updateBook.getTitle());
+        book.setTitle(updateBook.getTitle().toLowerCase().trim());
         book.setAuthor(saveAuthor(updateBook.getAuthor()));
         book.setGenre(saveGenre(updateBook.getGenre()));
         book.setIsbn(saveIsbn(updateBook));

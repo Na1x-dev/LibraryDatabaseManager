@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -45,6 +46,13 @@ public class SaleController {
         Sale newSale = new Sale();
         model.addAttribute("checkUser", userService.findByUsername(user.getName()));
         model.addAttribute("newSale", newSale);
+        model.addAttribute("showBookList", getBookList());
+        model.addAttribute("bookAuthorList", getAuthorNameList(getBookList()));
+        model.addAttribute("bookPublisherList", getPublisherNameList(getBookList()));
+        model.addAttribute("bookLanguageList", getLanguageNameList(getBookList()));
+        for (int i = 0; i < getBookList().size(); i++) {
+            System.out.println(i + " - " + getBookList().get(i));
+        }
         return "newSalePage/index";
     }
 
@@ -58,6 +66,42 @@ public class SaleController {
         } else {
             return "/newSalePage/index";
         }
+    }
+
+    private List<Book> getBookList() {
+        List<Book> books = bookService.readAll();
+        for (int i = 0; i < books.size(); ) {
+            if (books.get(i).getBooksAmount() < 1) {
+                books.remove(i);
+            } else {
+                i++;
+            }
+        }
+        return books;
+    }
+
+    private List<String> getAuthorNameList(List<Book> bookList) {
+        List<String> authorName = new ArrayList<>();
+        for (Book book : bookList) {
+            authorName.add("\"" + book.getAuthor().getAuthorName() + "\"");
+        }
+        return authorName;
+    }
+
+    private List<String> getPublisherNameList(List<Book> bookList) {
+        List<String> publisherName = new ArrayList<>();
+        for (Book book : bookList) {
+            publisherName.add("\"" + book.getPublisher().getPublisherTitle() + "\"");
+        }
+        return publisherName;
+    }
+
+    private List<String> getLanguageNameList(List<Book> bookList) {
+        List<String> languageName = new ArrayList<>();
+        for (Book book : bookList) {
+            languageName.add("\"" + book.getLanguage().getLanguageName() + "\"");
+        }
+        return languageName;
     }
 
     @PostMapping("/clientsPage/index/update/{id}")
@@ -76,10 +120,10 @@ public class SaleController {
         return "redirect:/clientsPage/index";
     }
 
-    public void updateClient(Client client, Client updateClient){
-        client.setClientAddress(updateClient.getClientAddress());
-        client.setClientName(updateClient.getClientName());
-        client.setEmail(updateClient.getEmail());
+    public void updateClient(Client client, Client updateClient) {
+        client.setClientAddress(updateClient.getClientAddress().toLowerCase().trim());
+        client.setClientName(updateClient.getClientName().toLowerCase().trim());
+        client.setEmail(updateClient.getEmail().toLowerCase().trim());
         client.setCity(saveCity(updateClient.getCity()));
     }
 

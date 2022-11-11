@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -16,9 +16,6 @@
                autofocus="true" required="required" th:field="${newSale.client.clientName}"/>
         <input type="email" class="sale-input client-input" placeholder="Электронная почта"
                autofocus="true" required="required" th:field="${newSale.client.email}"/>
-<!--        <input type="text" class="sale-input client-input" placeholder="Телефон"-->
-<!--               autofocus="true" required="required"-->
-<!--               th:field="${newSale.client.phone}"/>-->
         <input type="text" class="sale-input client-input" placeholder="Город"
                autofocus="true" required="required"
                th:field="${newSale.client.city.title}"/>
@@ -29,36 +26,58 @@
 
     <div>
         <input type="date" id="date-picker" class="sale-input sale-date-input" placeholder="Дата продажи"
+               autocomplete="off"
                autofocus="true" required="required" th:field="${newSale.saleDate}"/>
     </div>
     <div class="some-text">
         Книги
     </div>
     <div class="book-input-container">
-        <input type="text" class="sale-input book-input" placeholder="Название книги"
-               autofocus="true" required="required" th:field="${newSale.book.title}"/>
-        <input type="text" class="sale-input book-input" placeholder="Автор"
-               autofocus="true" required="required" th:field="${newSale.book.author.authorName}"/>
-        <input type="text" class="sale-input book-input" placeholder="Издательство"
+        <input type="text" list="book-title-data-list" class="sale-input book-input" placeholder="Название книги"
+               autocomplete="off"
+               autofocus="true" required="required" th:field="${newSale.book.title}" th:data-languages="${bookLanguageList}" th:data-publishers="${bookPublisherList}" th:data-authors="${bookAuthorList}" th:oninput="
+
+                    var val = this.value;
+                    var opts = document.getElementById('book-title-data-list').children;
+                    for(var i = 0; i<opts.length; i++){
+                    console.log(JSON.parse(this.getAttribute('data-authors')));
+                        if(opts[i].value===val){
+                            document.getElementById('author-input').value = JSON.parse(this.getAttribute('data-authors'))[i];
+                            document.getElementById('publisher-input').value = JSON.parse(this.getAttribute('data-publishers'))[i];
+                            document.getElementById('language-input').value = JSON.parse(this.getAttribute('data-languages'))[i];
+                            break;
+                        }
+                    }
+               ">
+        <datalist id="book-title-data-list">
+            <option th:id="${book.bookId}" th:each="book : ${showBookList}" th:value="${book.title}"></option>
+        </datalist>
+        <input type="text" id="author-input" class="sale-input book-input" placeholder="Автор" autocomplete="off"
+               autofocus="true" required="required" th:name="book.author.authorName"/>
+        <input type="text" id="publisher-input" class="sale-input book-input" placeholder="Издательство"
+               autocomplete="off"
                autofocus="true" required="required"
-               th:field="${newSale.book.publisher.publisherTitle}"/>
-        <input type="text" class="sale-input book-input" placeholder="Язык"
+               th:name="book.publisher.publisherTitle"/>
+        <input type="text" id="language-input" class="sale-input book-input" placeholder="Язык" autocomplete="off"
                autofocus="true" required="required"
-               th:field="${newSale.book.language.languageName}"/>
-        <!--        <input type="number" step="0.01" class="sale-input book-input" placeholder="Цена одной книги"-->
-        <!--               autofocus="true" required="required" th:field="${newSupply.supplyDetails[0].price}"/>-->
-        <input type="number" id="amount-input" class="sale-input" placeholder="Количество"
-               autofocus="true" required="required" min="0" th:field="${newSale.amount}"/>
+               th:name="book.language.languageName"/>
+        <input type="number" id="amount-input" class="sale-input" placeholder="Количество" autocomplete="off"
+               autofocus="true" required="required" min="0" value="1" th:name="amount"/>
     </div>
 
     <div class="bottom-sale-buttons">
-<!--        <div class="add-delete-book-buttons">-->
-<!--            <button class="add-book-button new-sale-button">Добавить книгу</button>-->
-<!--            <button class="delete-book-button new-sale-button">Убрать книгу</button>-->
-<!--        </div>-->
         <button type="submit" class="save-sale-button new-sale-button">Сохранить</button>
     </div>
     <div class="error-text" th:text="${bookError}">some error</div>
+<!--    <script>-->
+<!--         var val = this.value;-->
+<!--                    var opts = document.getElementById('book-title-data-list').children;-->
+<!--                    for(var i = 0; i<opts.length; i++){-->
+<!--                        console.log(opts[i]);-->
+<!--                        break;-->
+<!--                    }-->
+
+<!--    </script>-->
 </form>
 </body>
 </html>
