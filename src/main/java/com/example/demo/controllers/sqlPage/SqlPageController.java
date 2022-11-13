@@ -11,10 +11,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.security.Principal;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 @Controller
 public class SqlPageController {
@@ -30,7 +33,7 @@ public class SqlPageController {
             mainSqlRequest = new SqlRequest();
             connection = getNewConnection();
         }
-        if(mainTableContent == null){
+        if (mainTableContent == null) {
             mainTableContent = new TableContent();
         }
         model.addAttribute("tableContent", mainTableContent);
@@ -43,18 +46,26 @@ public class SqlPageController {
     public String sqlPagePost(Model model, @ModelAttribute("sqlRequest") SqlRequest sqlRequest, @ModelAttribute("TableContent") TableContent tableContent) {
         mainSqlRequest = sqlRequest;
         executeUpdate(mainSqlRequest.getSqlString(), tableContent);
-        mainTableContent=tableContent;
+        mainTableContent = tableContent;
         model.addAttribute("tableContent", mainTableContent);
         model.addAttribute("sqlRequest", mainSqlRequest);
         return "redirect:/sqlPage/index";
     }
 
     private Connection getNewConnection() {
-        String url = "jdbc:postgresql://localhost:5432/testlib2";
-        String user = "postgres";
-        String passwd = "123";
+        FileInputStream fis;
+        Properties property = new Properties();
         try {
-            return DriverManager.getConnection(url, user, passwd);
+            fis = new FileInputStream("src/main/resources/application.properties");
+            property.load(fis);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        String url = property.getProperty("spring.datasource.url");
+        String user = property.getProperty("spring.datasource.username");
+        String password = property.getProperty("spring.datasource.password");
+        try {
+            return DriverManager.getConnection(url, user, password);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
