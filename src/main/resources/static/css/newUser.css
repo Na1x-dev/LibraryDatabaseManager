@@ -10,7 +10,8 @@
     font-size: 15px;
     padding: 10px;
     color: #333333;
-    border: 1px solid #333333;
+    border: 2px solid #009150;
+    border-radius: 5px;
     margin-top: 20px;
     width: 20vw;
 }
@@ -25,9 +26,12 @@
     margin-top: 20px;
     width: 20vw;
     padding: 10px;
-    border: 1px solid #333333;
+    border: 0;
+    background-color: #009150;
+    border-radius: 5px;
     font-size: 15px;
-    color: #333333;
+    color: #fff;
+    transition-duration: 0.2s;
 }
 
 .bottom-user-buttons{
@@ -37,6 +41,6 @@
 }
 
 .new-user-button:hover{
-    background-color: #eeeeee;
+    background-color: #00703e;
     cursor: pointer;
 }

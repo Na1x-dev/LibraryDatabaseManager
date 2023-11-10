@@ -1,72 +1,89 @@
-.users-header-button{
+.users-header-button {
   border-left: 5px solid #009150;
   background-color: #13191b;
- 
+
 }
 
-.user-delete-button, .user-update-button{
-text-decoration:none;
-color: #333333;
-width:100%;
-height:100%;
-padding: 10px;
-margin-right: 0;
+.user-delete-button,
+.user-update-button {
+  text-decoration: none;
+  color: #333333;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  margin-right: 0;
+  border-radius: 8px;
+  transition-duration: 0.2s;
 }
 
-.user-delete-button:hover, .user-update-button:hover{
-background-color: #eeeeee;
+.user-delete-button:hover {
+  background-color: #f91b4f;
+  color: #fff;
   cursor: pointer;
 }
 
-.dialog{
-position: absolute;
-margin: auto;
-left:0;
-right:0;
-border: 1px solid #333333;
-top:50%;
-transform: translate(0, -50%);
-background-color: #ffffff;
-padding: 10px;
+
+.user-update-button:hover {
+  background-color: #f7a218;
+  color: #fff;
+  cursor: pointer;
 }
 
-.some-text{
-margin: 10px;
-font-size: 25px;
-color: #333333;
+.dialog {
+  transition-duration: 0.2s;
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  border: 2px solid #009150;
+  border-radius: 10px;
+  top: 50%;
+  transform: translate(0, -50%);
+  background-color: #ffffff;
+  padding: 10px;
 }
 
-.dialog-button{
-padding:10px;
-font-size: 20px;
-color: #333333;
-background-color: #ffffff;
-border: 1px solid #333333;
-text-decoration: none;
-width: 320px;
-margin-bottom: 10px;
-margin-right:5px;
-margin-left: 5px;
+.some-text {
+  margin: 10px;
+  font-size: 25px;
+  color: #333333;
 }
 
-.dialog-button:hover{
-background-color: #eeeeee;
-cursor: pointer;
+.dialog-button {
+  padding: 10px;
+  font-size: 20px;
+  color: #fff;
+  background-color: #009150;
+  border: 0;
+  border-radius: 5px;
+  text-decoration: none;
+  width: 320px;
+  margin-bottom: 10px;
+  margin-right: 5px;
+  margin-left: 5px;
+  transition-duration: 0.2s;
 }
 
-.user-input{
-font-size: 20px;
-padding: 10px;
-margin-top: 10px;
-margin-bottom:10px;
-margin-right: 5px;
-margin-left:5px;
-background-color: #ffffff;
-color: #333333;
-width: 320px;
+.dialog-button:hover {
+  background-color: #00703e;
+  cursor: pointer;
 }
 
-#confirm-delete-user-button:hover{
-background-color: #d1243e;
-color: #ffffff;
+.user-input {
+  font-size: 20px;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  margin-right: 5px;
+  margin-left: 5px;
+  background-color: #ffffff;
+  color: #333333;
+  width: 320px;
+  border: 2px solid #009150;
+  border-radius: 5px;
+}
+
+#confirm-delete-user-button:hover {
+  background-color: #d1243e;
+  color: #ffffff;
 }

@@ -5,15 +5,18 @@
     height: 60px;
     margin-bottom: 15px;
     font-size: 20px;
-    border: 1px solid #333333;
+    border: 2px solid #009150;
+    border-radius: 5px;
     background-color: #ffffff;
     padding-left: 5%;
     padding-right: 5%;
     color: #333333;
+    font-weight: 600;
 }
 
 .form-heading {
     margin: 20px;
     font-size: 30px;
     color: #555555;
+    font-weight: 600;
 }

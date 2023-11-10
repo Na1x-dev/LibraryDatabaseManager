@@ -1,20 +1,19 @@
 .supply-container {
-    margin-left: auto;
-    margin-right: auto;
-    width: 80vw;
+    width: auto;
 }
 
 .book-input-container {
     display: flex;
     flex-direction: row;
+    gap: 10px;
+    width: auto;
 }
 
 .book-input {
     flex-grow: 3;
-    border: 0;
-    border-left: 1px solid #333333;
-    border-top: 1px solid #333333;
-    border-bottom: 1px solid #333333;
+    border-radius: 5px;
+    border: 2px solid #009150;
+    width: 16%;
 }
 
 .supply-input {
@@ -34,7 +33,8 @@
 
 .supply-detail-input {
     width: 20vw;
-    border: 1px solid #333333;
+    border: 2px solid #009150;
+    border-radius: 5px;
     /*border: 0;*/
     /*border-right: 1px solid #333333;*/
     /*border-top: 1px solid #333333;*/
@@ -42,29 +42,34 @@
 }
 
 #amount-input {
-    border: 1px solid #333333;
+    border-radius: 5px;
+    border: 2px solid #009150;
     width: 70px;
 }
 
 .new-supply-button{
+    border: 0;
     margin-top: 20px;
     width: 20vw;
     padding: 10px;
-    border: 1px solid #333333;
+    border-radius: 5px;
+    background-color: #009150;
     font-size: 15px;
-    color: #333333;
+    color: #fff;
     text-align: center;
     text-decoration: none;
+    transition-duration: 0.2s;
 }
 
 .bottom-supply-buttons{
     margin-top: 20px    ;
     display: flex;
     flex-direction: column;
+    transition-duration: 0.2s;
 }
 
 .new-supply-button:hover{
-    background-color: #eeeeee;
+    background-color: #00703e;
     cursor: pointer;
 }
 
