@@ -25,8 +25,12 @@
             <div class="user-name" th:text="${checkUser.username}">admin</div>
       </div>
       <section class="general-section">
+            <div class="header-container">
+            <a class="to-new-supply-button to-something-new-button" href="../newSupplyPage/index.html"
+       th:href="@{../../newSupplyPage/index}">Новое поступление</a>
             <header th:replace="generalElements/header :: header"></header>
             <header th:replace="generalElements/headerForUsers :: header"></header>
+      </div>
             <!--<header th:replace="generalElements/header :: header"></header>-->
             <main id="main">
                   <div class="main-table" th:replace="mainPage/list :: list">
