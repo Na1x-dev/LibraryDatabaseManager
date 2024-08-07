@@ -11,7 +11,12 @@
 </head>
 
 <div class="container" th:fragment="container">
-    <form class="form-log-in" method="POST" th:action="@{/logInPage/index}">
+    <form class="form-log-in" method="POST" th:action="@{/logInPage/index}"
+    style="background-size: cover; 
+    background: linear-gradient(to bottom right, #fe3082, #714092);
+    background-position: center; 
+    width: 100%; 
+    height: 300px;">
         <div class="form-heading">Вход</div>
 
         <div class="form-group">
@@ -32,7 +37,7 @@
     </form>
     <!--    <span th:text="${message}">some message</span>-->
     <span class="has-error" th:text="${error}">some error error error error error error error error error error</span>
-    <script>
+    <!-- <script>
         let usernameField = document.getElementById('username-field');
         let passwordField = document.getElementById('password-field');
         let logInButton = document.getElementById('log-in-button');
@@ -41,5 +46,5 @@
         logInButton.click();
         console.log(usernameField.value);
         console.log(passwordField.value);
-    </script>
+    </script> -->
 </div>

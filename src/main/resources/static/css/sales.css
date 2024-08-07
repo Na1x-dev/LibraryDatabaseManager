@@ -1,5 +1,11 @@
-.sales-header-button{
-    border-left: 5px solid #009150;
-    background-color: #13191b;
-   
-}
+.sales-header-button {
+    background-color: #dcd;
+    margin: 5px 0;
+    padding: 10px 40px;
+    border-radius: 0;
+  }
+  
+  .sales-header-button:hover {
+    cursor: auto;
+    background-color: #dcd;
+  }

@@ -1,7 +1,9 @@
 .sale-container {
- 
+
     width: 100%;
 }
+
+
 
 .client-input-container {
     display: flex;
@@ -20,8 +22,9 @@
 .book-input,
 .client-input {
     flex-grow: 3;
-    border-radius: 5px;
-    border: 2px solid #009150;
+    border-radius: 30px;
+    border: 0;
+    opacity: 0.75;
     width: 24%;
 }
 
@@ -33,18 +36,20 @@
     margin-top: 20px;
     /*margin-bottom: 20px;*/
 
-    }
+}
 
 .some-text {
-    color: #333333;
+    color: #fff;
+
     font-size: 25px;
     margin-top: 20px;
 }
 
 .sale-date-input {
     width: 20vw;
-    border-radius: 5px;
-    border: 2px solid #009150;
+    border-radius: 30px;
+    border: 0;
+    opacity: 0.75;
     /*border: 0;*/
     /*border-right: 1px solid #333333;*/
     /*border-top: 1px solid #333333;*/
@@ -52,15 +57,17 @@
 }
 
 #address-input {
-    border-radius: 5px;
-    border: 2px solid #009150;
+    border-radius: 30px;
+    border: 0;
+    opacity: 0.75;
     width: 30%;
 }
 
 #amount-input {
-    border-radius: 5px;
-    border: 2px solid #009150;
+    border-radius: 30px;
+    border: 0;
     width: 70px;
+    opacity: 0.75;
 }
 
 .new-sale-button {
@@ -68,10 +75,10 @@
     width: 20vw;
     padding: 10px;
     border: 0;
-    border-radius: 5px;
-background-color: #009150;
+    border-radius: 30px;
+    background-color: #fff;
     font-size: 15px;
-    color: #fff;
+    color: #555;
 }
 
 .bottom-sale-buttons {
@@ -81,7 +88,7 @@ background-color: #009150;
 }
 
 .new-sale-button:hover {
-    background-color: #00703e;
+    background-color: #ede;
     cursor: pointer;
 }
 

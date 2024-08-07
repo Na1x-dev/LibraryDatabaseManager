@@ -1,8 +1,14 @@
 .sql-header-button {
-    border-left: 5px solid #009150;
-    background-color: #13191b;
-   
-}
+    background-color: #dcd;
+    margin: 5px 0;
+    padding: 10px 40px;
+    border-radius: 0;
+  }
+  
+  .sql-header-button:hover {
+    cursor: auto;
+    background-color: #dcd;
+  }
 
 .sql-form {
     display: flex;
@@ -15,10 +21,11 @@
 .sql-textarea {
     width: 100%;
     background-color: white;
-    border: 2px solid #009150;
+    opacity: 0.75;
+    border: 0;
     font-size: 20px;
-    border-radius: 10px;
-    padding: 10px;
+    border-radius: 25px;
+    padding: 20px;
     outline: none;
     resize: vertical;
     color: #333;
@@ -27,17 +34,17 @@
 
 .send-sql-command {
     width: 100%;
-    color: #fff;
-    background-color: #009150;
+    color: #555;
+    background-color: #fff;
     border: 0;
-    border-radius: 10px;
+    border-radius: 30px;
     font-size: 20px;
     padding: 20px;
     font-weight: 600;
 }
 
 .send-sql-command:hover {
-    background-color: #00703e;
+    background-color: #ede;
     cursor: pointer;
 }
 

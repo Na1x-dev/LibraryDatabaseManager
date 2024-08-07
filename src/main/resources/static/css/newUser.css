@@ -10,37 +10,38 @@
     font-size: 15px;
     padding: 10px;
     color: #333333;
-    border: 2px solid #009150;
-    border-radius: 5px;
+    border: 0;
+    border-radius: 30px;
     margin-top: 20px;
     width: 20vw;
+    opacity: 0.75;
 }
 
 .some-text {
-    color: #333333;
+    color: #fff;
     font-size: 25px;
     margin-top: 20px;
 }
 
-.new-user-button{
+.new-user-button {
     margin-top: 20px;
     width: 20vw;
     padding: 10px;
     border: 0;
-    background-color: #009150;
-    border-radius: 5px;
+    background-color: fff;
+    border-radius: 30px;
     font-size: 15px;
-    color: #fff;
+    color: #555;
     transition-duration: 0.2s;
 }
 
-.bottom-user-buttons{
-    margin-top: 20px    ;
+.bottom-user-buttons {
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
 }
 
-.new-user-button:hover{
-    background-color: #00703e;
+.new-user-button:hover {
+    background-color: #ede;
     cursor: pointer;
 }

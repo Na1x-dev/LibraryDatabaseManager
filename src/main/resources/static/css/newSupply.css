@@ -11,9 +11,10 @@
 
 .book-input {
     flex-grow: 3;
-    border-radius: 5px;
-    border: 2px solid #009150;
+    border-radius: 30px;
+    border: 0;
     width: 16%;
+    opacity: 0.75;
 }
 
 .supply-input {
@@ -26,15 +27,16 @@
 }
 
 .some-text {
-    color: #333333;
+    color: #fff;
     font-size: 25px;
     margin-top: 20px;
 }
 
 .supply-detail-input {
     width: 20vw;
-    border: 2px solid #009150;
-    border-radius: 5px;
+    border: 0;
+    border-radius: 30px;
+    opacity: 0.75;
     /*border: 0;*/
     /*border-right: 1px solid #333333;*/
     /*border-top: 1px solid #333333;*/
@@ -42,42 +44,43 @@
 }
 
 #amount-input {
-    border-radius: 5px;
-    border: 2px solid #009150;
+    border-radius: 30px;
+    border: 0;
     width: 70px;
+    opacity: 0.75;
 }
 
-.new-supply-button{
+.new-supply-button {
     border: 0;
     margin-top: 20px;
     width: 20vw;
     padding: 10px;
-    border-radius: 5px;
-    background-color: #009150;
+    border-radius: 30px;
+    background-color: #fff;
     font-size: 15px;
-    color: #fff;
+    color: #555;
     text-align: center;
     text-decoration: none;
     transition-duration: 0.2s;
 }
 
-.bottom-supply-buttons{
-    margin-top: 20px    ;
+.bottom-supply-buttons {
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
     transition-duration: 0.2s;
 }
 
-.new-supply-button:hover{
-    background-color: #00703e;
+.new-supply-button:hover {
+    background-color: #ede;
     cursor: pointer;
 }
 
-.add-delete-book-buttons{
+.add-delete-book-buttons {
     display: flex;
     flex-direction: row;
 }
 
-.add-book-button{
+.add-book-button {
     margin-right: 20px;
 }

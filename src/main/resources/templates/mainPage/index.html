@@ -5,32 +5,45 @@
 <head>
       <meta charset="UTF-8">
       <title>Library</title>
-      <link rel="stylesheet" href="../../static/css/main.css" th:rel="stylesheet" th:href="@{/css/main.css}">
+
       <link rel="stylesheet" href="../../static/css/table.css" th:rel="stylesheet" th:href="@{/css/table.css}">
       <link rel="stylesheet" href="../../static/css/header.css" th:rel="stylesheet" th:href="@{/css/header.css}">
       <link rel="stylesheet" href="../../static/css/general.css" th:rel="stylesheet" th:href="@{/css/general.css}">
       <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700" rel="stylesheet"
             th:href="@{https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700}"
             th:rel="stylesheet">
+      <link rel="stylesheet" href="../../static/css/main.css" th:rel="stylesheet" th:href="@{/css/main.css}">
 </head>
 
 <body>
       <div class="upper-line">
             <div class="logo">
-                  <div class="hide-button">
-                        <div class="header-triangle"></div>
-                  </div>
+                  <!-- <div class="hide-button">
+                        <svg version="1.0" style="transform: scale(-1, 1); transform-origin: center;" xmlns="http://www.w3.org/2000/svg"
+                        width="50%" height="50%" viewBox="0 0 348.000000 348.000000"
+                        preserveAspectRatio="xMidYMid meet">
+                       
+                       <g transform="translate(0.000000,348.000000) scale(0.100000,-0.100000)"
+                       fill="#555" stroke="none">
+                       <path d="M827 3086 c-98 -35 -166 -112 -187 -210 -7 -35 -10 -403 -8 -1166 l3
+                       -1115 28 -57 c58 -118 189 -180 312 -149 28 7 333 177 758 423 392 226 786
+                       454 877 506 302 174 345 200 377 234 101 105 97 285 -8 385 -19 17 -176 114
+                       -349 214 -173 100 -606 349 -961 554 -355 205 -664 378 -685 384 -52 14 -111
+                       13 -157 -3z"/>
+                       </g>
+                       </svg>
+                  </div> -->
                   <div class="app-name"><span style="font-weight: 600;">Library</span>::Database</div>
             </div>
             <div class="user-name" th:text="${checkUser.username}">admin</div>
       </div>
       <section class="general-section">
             <div class="header-container">
-            <a class="to-new-supply-button to-something-new-button" href="../newSupplyPage/index.html"
-       th:href="@{../../newSupplyPage/index}">Новое поступление</a>
-            <header th:replace="generalElements/header :: header"></header>
-            <header th:replace="generalElements/headerForUsers :: header"></header>
-      </div>
+                  <a class="to-new-supply-button to-something-new-button" href="../newSupplyPage/index.html"
+                        th:href="@{../../newSupplyPage/index}">Новое поступление</a>
+                  <header th:replace="generalElements/header :: header"></header>
+                  <header th:replace="generalElements/headerForUsers :: header"></header>
+            </div>
             <!--<header th:replace="generalElements/header :: header"></header>-->
             <main id="main">
                   <div class="main-table" th:replace="mainPage/list :: list">
