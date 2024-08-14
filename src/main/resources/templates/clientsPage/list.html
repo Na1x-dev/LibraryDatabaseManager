@@ -8,8 +8,8 @@
 <!--            <th style="width: 20%">Номер телефона</th>-->
             <th style="width: 20%">Адрес</th>
             <th style="width: 15%">Город</th>
-            <th></th>
-            <th></th>
+            <th th:if="${checkUser.isAdmin()}"></th>
+            <th th:if="${checkUser.isAdmin()}"></th>
         </tr>
         </thead>
         <tbody>
