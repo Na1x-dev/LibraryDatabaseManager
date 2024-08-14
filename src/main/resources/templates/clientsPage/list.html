@@ -39,7 +39,7 @@
                 </div>
             </td>
 
-            <td style="text-align: center" th:if="${checkUser.isAdmin()}">
+            <td style="text-align: center" th:if="${checkUser.isAdmin()}" class="update-button-td">
                 <dialog id="update-dialog" class="update-dialog dialog">
                     <form th:fragment="client-form" class="client-container"
                           th:action="@{'/clientsPage/index/update/'+${client.clientId}}" method="post">

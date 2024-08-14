@@ -41,6 +41,8 @@
             <div class="header-container">
                   <a class="to-new-user-button to-something-new-button" href="../newUserPage/index.html"
                         th:href="@{../../newUserPage/index}">Новый сотрудник</a>
+                  <a th:onclick="printTable()" class="to-something-new-button"
+                  >Печать</a>
                   <header th:replace="generalElements/header :: header"></header>
                   <header th:replace="generalElements/headerForUsers :: header"></header>
             </div>
@@ -76,6 +78,57 @@
             headerIsHiden = !headerIsHiden;
       };
 
+  function printTable() {
+      // Получаем все строки таблицы
+      var rows = document.querySelectorAll(".table tr");
+
+      // Создаем новую таблицу для вывода
+      var newTable = '<table border="1"><tr>';
+
+      // Добавляем заголовки, исключая ненужные столбцы и пустые заголовки
+      for (var i = 0; i < rows[0].cells.length; i++) {
+          if (!rows[0].cells[i].classList.contains('delete-button-td') &&
+              !rows[0].cells[i].classList.contains('update-button-td') &&
+              rows[0].cells[i].innerText.trim() !== '') { // Проверка на пустой текст
+              newTable += '<th>' + rows[0].cells[i].innerHTML + '</th>';
+          }
+      }
+      newTable += '</tr>';
+
+      // Добавляем строки, исключая ненужные столбцы
+      for (var j = 1; j < rows.length; j++) {
+          newTable += '<tr>';
+          let rowHasData = false; // Флаг для проверки наличия данных в строке
+          for (var k = 0; k < rows[j].cells.length; k++) {
+              if (!rows[j].cells[k].classList.contains('delete-button-td') &&
+                  !rows[j].cells[k].classList.contains('update-button-td')) {
+                  newTable += '<td>' + rows[j].cells[k].innerHTML + '</td>';
+                  rowHasData = true; // Установим флаг, если есть данные
+              }
+          }
+          if (rowHasData) { // Добавляем строку только если есть данные
+              newTable += '</tr>';
+          }
+      }
+
+      newTable += '</table>';
+
+      // Открываем новую вкладку и записываем туда таблицу
+      var newWindow = window.open('', '_blank');
+      newWindow.document.write('<html><head><title>Таблица</title>');
+      newWindow.document.write('<style>table { border-collapse: collapse; width: 100%; } th, td { border: 1px solid black; padding: 8px; text-align: left; }</style>');
+      newWindow.document.write('</head><body>');
+      newWindow.document.write(newTable);
+      newWindow.document.write('</body></html>');
+
+      // Завершаем документ
+      newWindow.document.close();
+
+      // Открываем диалог печати
+      newWindow.print();
+  }
+
 </script>
+
 
 </html>

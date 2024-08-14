@@ -51,7 +51,7 @@
                 </div>
             </td>
 
-            <td style="text-align: center" th:if="${checkUser.isAdmin()}">
+            <td style="text-align: center" class="update-button-td" th:if="${checkUser.isAdmin()}">
                 <dialog id="update-dialog" class="update-dialog dialog">
                     <form th:fragment="book-form" class="book-container"
                           th:action="@{'/mainPage/index/update/'+${book.bookId}}" method="post">

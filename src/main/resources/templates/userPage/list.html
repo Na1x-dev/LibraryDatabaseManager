@@ -21,7 +21,7 @@
                 </div>
             </td>
 
-            <td style="text-align: center">
+            <td style="text-align: center" class="update-button-td">
                 <dialog id="update-dialog" class="update-dialog dialog">
                     <form th:fragment="user-form" class="user-container" th:action="@{'/userPage/index/update/'+${user.userId}}" method="post">
                         <div class="some-text" th:text="'Изменение данных ' + ${user.username}">
