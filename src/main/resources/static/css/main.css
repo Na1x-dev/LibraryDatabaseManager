@@ -48,27 +48,27 @@
   margin: auto;
   left: 0;
   right: 0;
-  border: 2px solid #009150;
-  border-radius: 10px;
+  border: 0;
+  border-radius: 30px;
   top: 50%;
   transform: translate(0, -50%);
-  background-color: #ffffff;
+  background-color: #fff;
   padding: 10px;
 }
 
 .some-text {
   margin: 10px;
   font-size: 25px;
-  color: #333333;
+  color: #555;
 }
 
 .dialog-button {
   padding: 10px;
   font-size: 20px;
   color: #fff;
-  background-color: #009150;
+  background-color: #fe3082;
   border: 0;
-  border-radius: 5px;
+  border-radius: 30px;
   text-decoration: none;
   width: 320px;
   margin-bottom: 10px;
@@ -78,7 +78,7 @@
 }
 
 .dialog-button:hover {
-  background-color: #00703e;
+  background-color: #714092;
   cursor: pointer;
 }
 
@@ -89,11 +89,11 @@
   margin-bottom: 20px;
   margin-right: 5px;
   margin-left: 5px;
-  background-color: #ffffff;
-  color: #333333;
+  background-color: #eee;
+  color: #555;
   width: 320px;
-  border: 2px solid #009150;
-  border-radius: 5px;
+  border: 0;
+  border-radius: 30px;
 }
 
 #confirm-delete-book-button:hover {
